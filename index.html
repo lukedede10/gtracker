@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Gym Tracker</title>
+  <meta name="theme-color" content="#006edb" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Gym Tracker" />
+  <title>Home Gym Tracker</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -21,9 +24,7 @@
       --shadow: 0 12px 30px rgba(2, 8, 23, 0.16);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -35,7 +36,7 @@
 
     .app {
       width: 100%;
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       padding: 18px 14px 40px;
     }
@@ -82,17 +83,10 @@
       margin-bottom: 4px;
     }
 
-    .summary-card strong {
-      font-size: 18px;
-    }
+    .summary-card strong { font-size: 18px; }
 
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
+    .screen { display: none; }
+    .screen.active { display: block; }
 
     .panel {
       background: var(--light);
@@ -105,7 +99,7 @@
     .section-title {
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
       margin-bottom: 12px;
     }
@@ -116,18 +110,14 @@
       line-height: 1.15;
     }
 
-    .section-title h2 {
-      font-size: 22px;
-    }
-
-    .section-title h3 {
-      font-size: 18px;
-    }
+    .section-title h2 { font-size: 22px; }
+    .section-title h3 { font-size: 18px; }
 
     .mini {
       font-size: 13px;
       color: var(--muted);
       line-height: 1.4;
+      margin: 5px 0 0;
     }
 
     .button-grid {
@@ -149,9 +139,8 @@
     }
 
     button:active,
-    .button:active {
-      transform: scale(0.985);
-    }
+    .button:active { transform: scale(0.985); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .primary {
       background: var(--blue);
@@ -159,20 +148,11 @@
       box-shadow: 0 8px 18px rgba(0, 110, 219, 0.24);
     }
 
-    .danger {
-      background: var(--red);
-      color: white;
-    }
-
-    .dark {
-      background: var(--bg);
-      color: white;
-    }
-
-    .soft {
-      background: #e0f2fe;
-      color: #075985;
-    }
+    .danger { background: var(--red); color: white; }
+    .dark { background: var(--bg); color: white; }
+    .soft { background: #e0f2fe; color: #075985; }
+    .green { background: #dcfce7; color: #166534; }
+    .amber { background: #fef3c7; color: #92400e; }
 
     .ghost {
       background: white;
@@ -180,22 +160,14 @@
       border: 1px solid var(--border);
     }
 
-    .green {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .amber {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
     .workout-btn {
       text-align: left;
       background: white;
       border: 1px solid var(--border);
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
-      min-height: 74px;
+      min-height: 88px;
+      position: relative;
+      overflow: hidden;
     }
 
     .workout-btn strong {
@@ -211,6 +183,13 @@
       line-height: 1.35;
     }
 
+    .workout-btn .complete-line {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #166534;
+      font-weight: 900;
+    }
+
     .card {
       background: white;
       border: 1px solid var(--border);
@@ -218,6 +197,11 @@
       padding: 14px;
       margin-bottom: 12px;
       box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .card.saved-today {
+      border-color: #86efac;
+      box-shadow: 0 6px 18px rgba(22, 101, 52, 0.12);
     }
 
     .exercise-head {
@@ -244,20 +228,10 @@
       white-space: nowrap;
     }
 
-    .badge.blue {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .badge.green {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .badge.amber {
-      background: #fef3c7;
-      color: #92400e;
-    }
+    .badge.blue { background: #dbeafe; color: #1d4ed8; }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .badge.amber { background: #fef3c7; color: #92400e; }
+    .badge.red { background: #fee2e2; color: #b91c1c; }
 
     .exercise-meta {
       display: grid;
@@ -282,9 +256,8 @@
       margin-bottom: 3px;
     }
 
-    .meta-box strong {
-      font-size: 15px;
-    }
+    .meta-box strong { font-size: 15px; }
+    .meta-box small { color: var(--muted); font-weight: 700; }
 
     .form-grid {
       display: grid;
@@ -326,9 +299,7 @@
       resize: vertical;
     }
 
-    .full {
-      grid-column: 1 / -1;
-    }
+    .full { grid-column: 1 / -1; }
 
     .actions {
       display: grid;
@@ -337,9 +308,8 @@
       margin-top: 12px;
     }
 
-    .actions.single {
-      grid-template-columns: 1fr;
-    }
+    .actions.three { grid-template-columns: 1fr 1fr 1fr; }
+    .actions.single { grid-template-columns: 1fr; }
 
     .howto,
     .hidden-box {
@@ -355,18 +325,14 @@
     }
 
     .howto.open,
-    .hidden-box.open {
-      display: block;
-    }
+    .hidden-box.open { display: block; }
 
     .howto ul {
       margin: 8px 0 0 18px;
       padding: 0;
     }
 
-    .howto li {
-      margin-bottom: 5px;
-    }
+    .howto li { margin-bottom: 5px; }
 
     .toast {
       position: fixed;
@@ -393,15 +359,8 @@
       bottom: 28px;
     }
 
-    .history-card {
-      border-left: 5px solid var(--blue);
-    }
-
-    .history-card h4 {
-      margin: 0 0 5px;
-      font-size: 17px;
-    }
-
+    .history-card { border-left: 5px solid var(--blue); }
+    .history-card h4 { margin: 0 0 5px; font-size: 17px; }
     .history-card p {
       margin: 4px 0;
       color: #475569;
@@ -443,23 +402,88 @@
       margin: 14px 0;
     }
 
-    .setting-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+    .progress-strip {
+      background: white;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--green);
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.2s ease;
+    }
+
+    .guided-footer {
+      position: sticky;
+      bottom: 10px;
+      z-index: 20;
+      background: rgba(248, 250, 252, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .timer-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1e3a8a;
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 12px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .timer-time {
+      font-size: 32px;
+      letter-spacing: -1px;
+      margin: 4px 0 10px;
+    }
+
+    .install-note {
+      background: #fef3c7;
+      color: #92400e;
+      border-radius: 18px;
+      padding: 12px;
+      line-height: 1.45;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .file-input {
+      background: white;
+      padding: 10px;
+      border-radius: 14px;
+      border: 1px dashed var(--border);
     }
 
     @media (min-width: 620px) {
-      .button-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
+      .button-grid { grid-template-columns: repeat(3, 1fr); }
+      .exercise-meta { grid-template-columns: repeat(3, 1fr); }
+      .top-summary { grid-template-columns: repeat(4, 1fr); }
+    }
 
-      .exercise-meta {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .top-summary {
-        grid-template-columns: repeat(4, 1fr);
+    @media (max-width: 430px) {
+      .actions,
+      .actions.three,
+      .nav-row {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -467,7 +491,7 @@
 <body>
   <div class="app">
     <header class="hero">
-      <h1>Gym Tracker</h1>
+      <h1>Home Gym Tracker</h1>
       <p>Show what you did last time, suggest what to do today, then save the result and move on.</p>
     </header>
 
@@ -482,20 +506,7 @@
           </div>
         </div>
 
-        <div class="button-grid">
-          <button class="workout-btn" onclick="openWorkout('A')">
-            <strong>Workout A</strong>
-            <span>Squat / Bench / Row</span>
-          </button>
-          <button class="workout-btn" onclick="openWorkout('B')">
-            <strong>Workout B</strong>
-            <span>RDL / Shoulders / Arms</span>
-          </button>
-          <button class="workout-btn" onclick="openWorkout('C')">
-            <strong>Workout C</strong>
-            <span>Full Body / Conditioning</span>
-          </button>
-        </div>
+        <div class="button-grid" id="homeWorkoutButtons"></div>
       </section>
 
       <section class="panel">
@@ -526,7 +537,15 @@
             <p id="workoutSub" class="mini"></p>
           </div>
         </div>
+
+        <div class="progress-strip" id="workoutProgressStrip"></div>
+
+        <div class="actions single" style="margin-bottom: 12px;">
+          <button class="primary" id="guidedToggleBtn" onclick="startGuidedWorkout()">Start Workout Mode</button>
+        </div>
+
         <div id="exerciseList"></div>
+        <div id="sessionSummary"></div>
       </section>
     </main>
 
@@ -630,13 +649,44 @@
           <button class="primary" onclick="saveSettings()">Save Settings</button>
         </div>
       </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h3>Backup / Import</h3>
+            <p class="mini">Use this before changing phones or clearing browser data.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="green" onclick="exportData()">Export Backup</button>
+          <button class="ghost" onclick="document.getElementById('importFile').click()">Import Backup</button>
+        </div>
+        <input id="importFile" class="file-input" type="file" accept="application/json,.json" style="display:none" onchange="importData(event)" />
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h3>Install as app</h3>
+            <p class="mini">Once hosted on GitHub Pages, you can add this to your phone home screen.</p>
+          </div>
+        </div>
+        <div id="installBox" class="install-note">
+          On iPhone: open in Safari, tap Share, then Add to Home Screen.<br><br>
+          On Android/Chrome: open the menu and choose Install app or Add to Home screen.
+        </div>
+        <div class="actions single" id="installAction" style="display:none;">
+          <button class="primary" onclick="installApp()">Install App</button>
+        </div>
+      </section>
     </main>
   </div>
 
   <div id="toast" class="toast"></div>
 
   <script>
-    const STORAGE_KEY = 'GymTracker_v1';
+    const STORAGE_KEY = 'HomeGymTracker_v2';
+    const OLD_STORAGE_KEY = 'HomeGymTracker_v1';
 
     const defaultState = {
       settings: {
@@ -663,6 +713,8 @@
             maxReps: 8,
             startWeight: 90,
             increment: 2.5,
+            restSeconds: 180,
+            warmup: true,
             how: [
               'Bar across your upper back, not your neck.',
               'Feet roughly shoulder-width, toes slightly out.',
@@ -681,6 +733,8 @@
             maxReps: 8,
             startWeight: 60,
             increment: 2.5,
+            restSeconds: 150,
+            warmup: true,
             how: [
               'Eyes under the bar, shoulder blades pulled back and down.',
               'Feet planted firmly on the floor.',
@@ -698,6 +752,8 @@
             maxReps: 10,
             startWeight: 55,
             increment: 2.5,
+            restSeconds: 120,
+            warmup: true,
             how: [
               'Hinge forward with a flat back and soft knees.',
               'Keep the bar close and pull towards your lower ribs.',
@@ -714,6 +770,8 @@
             maxReps: 10,
             startWeight: '',
             increment: 2,
+            restSeconds: 90,
+            warmup: false,
             how: [
               'Start with dumbbells at shoulder height.',
               'Brace your core and press overhead.',
@@ -730,6 +788,8 @@
             maxReps: 15,
             startWeight: '',
             increment: 2.5,
+            restSeconds: 75,
+            warmup: false,
             how: [
               'Sit back into the bench with the pad on your lower shin/ankle.',
               'Extend your legs until straight and squeeze your quads.',
@@ -747,6 +807,8 @@
             startWeight: 'BW',
             increment: 5,
             unit: 'sec',
+            restSeconds: 60,
+            warmup: false,
             how: [
               'Elbows under shoulders, body in a straight line.',
               'Squeeze glutes and brace your stomach.',
@@ -769,6 +831,8 @@
             maxReps: 10,
             startWeight: 75,
             increment: 2.5,
+            restSeconds: 150,
+            warmup: true,
             how: [
               'Hold the bar in front of your thighs with a soft bend in your knees.',
               'Push your hips back and let the bar slide down your thighs.',
@@ -786,6 +850,8 @@
             maxReps: 8,
             startWeight: 35,
             increment: 2.5,
+            restSeconds: 150,
+            warmup: true,
             how: [
               'Start with the bar at upper chest height.',
               'Hands just outside shoulders, glutes and abs tight.',
@@ -803,6 +869,8 @@
             maxReps: 12,
             startWeight: '',
             increment: 2,
+            restSeconds: 90,
+            warmup: false,
             how: [
               'Set the bench to a slight incline.',
               'Start with dumbbells near your upper chest.',
@@ -819,6 +887,8 @@
             maxReps: 12,
             startWeight: '',
             increment: 2,
+            restSeconds: 90,
+            warmup: false,
             how: [
               'Brace one hand and knee on the bench with your back flat.',
               'Pull the dumbbell towards your hip, not your shoulder.',
@@ -835,6 +905,8 @@
             maxReps: 12,
             startWeight: '',
             increment: 2,
+            restSeconds: 75,
+            warmup: false,
             how: [
               'Keep your upper arms fixed against the preacher pad.',
               'Curl up, squeeze briefly, then lower slowly until nearly straight.',
@@ -851,6 +923,8 @@
             maxReps: 10,
             startWeight: 50,
             increment: 2.5,
+            restSeconds: 120,
+            warmup: true,
             how: [
               'Set up like a normal bench press but bring your hands slightly closer.',
               'Lower to your lower chest with elbows closer to your body.',
@@ -873,6 +947,8 @@
             maxReps: 10,
             startWeight: 50,
             increment: 2.5,
+            restSeconds: 120,
+            warmup: true,
             how: [
               'For front squat, keep the bar across your front shoulders with elbows high.',
               'Stay upright as you squat down.',
@@ -890,6 +966,8 @@
             maxReps: 10,
             startWeight: 55,
             increment: 2.5,
+            restSeconds: 120,
+            warmup: true,
             how: [
               'Same setup as Workout A, but slightly lighter.',
               'Control the lowering phase and press smoothly.',
@@ -906,6 +984,8 @@
             maxReps: 12,
             startWeight: 50,
             increment: 2.5,
+            restSeconds: 90,
+            warmup: true,
             how: [
               'Hinge with a flat back.',
               'Pull towards your lower ribs and squeeze your back.',
@@ -922,6 +1002,8 @@
             maxReps: 12,
             startWeight: 80,
             increment: 5,
+            restSeconds: 120,
+            warmup: true,
             how: [
               'Upper back against the bench, bar across your hips with padding.',
               'Feet planted and shins roughly vertical at the top.',
@@ -938,6 +1020,8 @@
             maxReps: 15,
             startWeight: '',
             increment: 1,
+            restSeconds: 60,
+            warmup: false,
             how: [
               'Stand tall with dumbbells by your sides.',
               'Raise arms out to the side to shoulder height with a slight bend in elbows.',
@@ -954,6 +1038,8 @@
             maxReps: 12,
             startWeight: '',
             increment: 2.5,
+            restSeconds: 75,
+            warmup: false,
             how: [
               'Use the leg developer if it allows hamstring curls.',
               'Curl your heels towards your bum and squeeze the hamstrings.',
@@ -971,6 +1057,8 @@
             startWeight: 'BW',
             increment: 15,
             unit: 'sec',
+            restSeconds: 60,
+            warmup: false,
             how: [
               'Work in sharp rounds rather than sloppy all-out swinging.',
               'Keep hands up, move your feet, and breathe.',
@@ -984,10 +1072,19 @@
 
     let state = loadState();
     let currentWorkout = null;
+    let guidedMode = false;
+    let guidedIndex = 0;
+    let timerInterval = null;
+    let timerRemaining = 0;
+    let deferredInstallPrompt = null;
 
     function loadState() {
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
+        let saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) {
+          const oldSaved = localStorage.getItem(OLD_STORAGE_KEY);
+          if (oldSaved) saved = oldSaved;
+        }
         if (!saved) return structuredClone(defaultState);
         const parsed = JSON.parse(saved);
         return {
@@ -1005,6 +1102,7 @@
     function saveState() {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       renderTopSummary();
+      renderHomeButtons();
     }
 
     function todayISO() {
@@ -1035,6 +1133,8 @@
     }
 
     function goHome() {
+      guidedMode = false;
+      stopTimer();
       showScreen('homeScreen');
     }
 
@@ -1052,10 +1152,32 @@
       `;
     }
 
+    function renderHomeButtons() {
+      const container = document.getElementById('homeWorkoutButtons');
+      container.innerHTML = Object.keys(workouts).map(key => {
+        const completion = getWorkoutCompletion(key);
+        const line = completion.completed === completion.total
+          ? `✅ Complete today · ${completion.completed}/${completion.total}`
+          : `${completion.completed}/${completion.total} completed today`;
+
+        return `
+          <button class="workout-btn" onclick="openWorkout('${key}')">
+            <strong>${workouts[key].title}</strong>
+            <span>${workouts[key].subtitle}</span>
+            <div class="complete-line">${line}</div>
+          </button>
+        `;
+      }).join('');
+    }
+
     function openWorkout(key) {
       currentWorkout = key;
+      guidedMode = false;
+      guidedIndex = 0;
+      stopTimer();
       document.getElementById('workoutTitle').textContent = workouts[key].title;
       document.getElementById('workoutSub').textContent = workouts[key].subtitle;
+      document.getElementById('guidedToggleBtn').textContent = 'Start Workout Mode';
       renderWorkout(key);
       showScreen('workoutScreen');
     }
@@ -1063,29 +1185,75 @@
     function renderWorkout(key) {
       const container = document.getElementById('exerciseList');
       const workout = workouts[key];
-      container.innerHTML = workout.exercises.map(ex => renderExerciseCard(key, ex)).join('');
+      renderWorkoutProgress(key);
+      renderSessionSummary(key);
+
+      let exercisesToRender = workout.exercises;
+      if (guidedMode) exercisesToRender = [workout.exercises[guidedIndex]];
+
+      container.innerHTML = exercisesToRender.map(ex => renderExerciseCard(key, ex)).join('');
+
+      if (guidedMode) {
+        const footer = document.createElement('div');
+        footer.className = 'guided-footer';
+        footer.innerHTML = `
+          <div class="actions">
+            <button class="ghost" onclick="previousGuidedExercise()" ${guidedIndex === 0 ? 'disabled' : ''}>← Previous</button>
+            <button class="primary" onclick="nextGuidedExercise()">${guidedIndex === workout.exercises.length - 1 ? 'Finish' : 'Next →'}</button>
+          </div>
+        `;
+        container.appendChild(footer);
+      }
+    }
+
+    function renderWorkoutProgress(key) {
+      const completion = getWorkoutCompletion(key);
+      const percent = completion.total ? Math.round((completion.completed / completion.total) * 100) : 0;
+      document.getElementById('workoutProgressStrip').innerHTML = `
+        <strong>${completion.completed}/${completion.total} exercises saved today</strong>
+        <p class="mini">${completion.completed === completion.total ? 'Workout complete. Lovely work.' : 'Save each exercise and it will tick off for today.'}</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
+      `;
+    }
+
+    function getWorkoutCompletion(key) {
+      const today = todayISO();
+      const exercises = workouts[key].exercises;
+      const completed = exercises.filter(ex => getTodayExerciseLog(ex.id)).length;
+      return { completed, total: exercises.length };
     }
 
     function renderExerciseCard(workoutKey, ex) {
       const last = getLatestExerciseLog(ex.id);
+      const todayLog = getTodayExerciseLog(ex.id);
       const suggested = getSuggestedWeight(ex, last);
-      const lastText = last ? `${last.weight}${last.unit || 'kg'} — ${last.reps.join(' / ')}` : 'No data yet';
+      const lastText = last ? `${last.weight}${last.unit === 'kg' ? 'kg' : last.unit === 'sec' ? ' sec' : ''} — ${last.reps.join(' / ')}` : 'No data yet';
       const advice = last ? getAdvice(ex, last) : `Start with ${formatWeight(suggested, ex)} and keep it clean.`;
-      const repsInputs = Array.from({ length: ex.sets }, (_, i) => `
-        <div>
-          <label>Set ${i + 1} ${ex.unit === 'sec' ? 'seconds' : 'reps'}</label>
-          <input id="${ex.id}_set_${i}" type="number" min="0" step="1" inputmode="numeric" placeholder="${ex.minReps}" />
-        </div>
-      `).join('');
+      const savedClass = todayLog ? 'saved-today' : '';
+      const completedBadge = todayLog ? '<span class="badge green">✅ Saved today</span>' : `<span class="badge blue">${formatWeight(suggested, ex)}</span>`;
+      const warmupHtml = ex.warmup ? renderWarmupBox(ex, suggested) : '';
+
+      const repsInputs = Array.from({ length: ex.sets }, (_, i) => {
+        const existing = todayLog ? todayLog.reps[i] : '';
+        return `
+          <div>
+            <label>Set ${i + 1} ${ex.unit === 'sec' ? 'seconds' : 'reps'}</label>
+            <input id="${ex.id}_set_${i}" type="number" min="0" step="1" inputmode="numeric" value="${existing ?? ''}" placeholder="${ex.minReps}" />
+          </div>
+        `;
+      }).join('');
+
+      const weightValue = todayLog ? todayLog.weight : inputWeightValue(suggested, ex);
+      const saveText = todayLog ? 'Update Entry' : 'Save Exercise';
 
       return `
-        <article class="card" id="card_${ex.id}">
+        <article class="card ${savedClass}" id="card_${ex.id}">
           <div class="exercise-head">
             <div>
               <h3>${ex.name}</h3>
               <p class="mini">Target: ${ex.target}</p>
             </div>
-            <span class="badge blue">${formatWeight(suggested, ex)}</span>
+            ${completedBadge}
           </div>
 
           <div class="exercise-meta">
@@ -1097,14 +1265,15 @@
           <div class="form-grid">
             <div class="full">
               <label>${ex.unit === 'sec' ? 'Round length / time' : 'Weight used'}</label>
-              <input id="${ex.id}_weight" type="text" inputmode="decimal" value="${inputWeightValue(suggested, ex)}" placeholder="${ex.unit === 'sec' ? 'Bodyweight / seconds' : 'kg'}" />
+              <input id="${ex.id}_weight" type="text" inputmode="decimal" value="${weightValue}" placeholder="${ex.unit === 'sec' ? 'Bodyweight / seconds' : 'kg'}" />
             </div>
             ${repsInputs}
           </div>
 
-          <div class="actions">
+          <div class="actions three">
             <button class="ghost" onclick="toggleHowTo('${ex.id}')">How to perform</button>
-            <button class="green" onclick="saveExercise('${workoutKey}', '${ex.id}')">Save Exercise</button>
+            <button class="soft" onclick="toggleWarmup('${ex.id}')">Warm-up / Timer</button>
+            <button class="green" onclick="saveExercise('${workoutKey}', '${ex.id}')">${saveText}</button>
           </div>
 
           <div id="how_${ex.id}" class="howto">
@@ -1114,7 +1283,54 @@
             <strong>Avoid</strong>
             <ul>${ex.avoid.map(item => `<li>${item}</li>`).join('')}</ul>
           </div>
+
+          <div id="warmup_${ex.id}" class="howto">
+            ${warmupHtml}
+            ${renderTimerBox(ex)}
+          </div>
         </article>
+      `;
+    }
+
+    function renderWarmupBox(ex, suggested) {
+      const numeric = parseFloat(suggested);
+      if (Number.isNaN(numeric) || numeric <= 0 || ex.unit === 'sec') {
+        return '<strong>Warm-up</strong><p class="mini">Use a lighter warm-up set before your working sets.</p><div class="divider"></div>';
+      }
+
+      const warmups = buildWarmupSets(numeric);
+      return `
+        <strong>Suggested warm-up</strong>
+        <ul>${warmups.map(w => `<li>${w}</li>`).join('')}</ul>
+        <div class="divider"></div>
+      `;
+    }
+
+    function buildWarmupSets(weight) {
+      const sets = [];
+      sets.push('Empty bar x 8–10');
+      if (weight >= 40) sets.push(`${roundTo2Point5(weight * 0.45)}kg x 5`);
+      if (weight >= 60) sets.push(`${roundTo2Point5(weight * 0.65)}kg x 3`);
+      if (weight >= 80) sets.push(`${roundTo2Point5(weight * 0.82)}kg x 2`);
+      sets.push(`Then ${weight}kg working sets`);
+      return sets;
+    }
+
+    function roundTo2Point5(num) {
+      return Math.max(20, Math.round(num / 2.5) * 2.5);
+    }
+
+    function renderTimerBox(ex) {
+      return `
+        <strong>Rest timer</strong>
+        <div class="timer-box" id="timer_box_${ex.id}">
+          <div class="timer-time" id="timer_${ex.id}">${formatTimer(ex.restSeconds)}</div>
+          <div class="actions three">
+            <button class="ghost" onclick="startTimer('${ex.id}', ${ex.restSeconds})">${Math.round(ex.restSeconds / 60)} min</button>
+            <button class="ghost" onclick="startTimer('${ex.id}', 90)">90 sec</button>
+            <button class="danger" onclick="stopTimer()">Stop</button>
+          </div>
+        </div>
       `;
     }
 
@@ -1136,6 +1352,13 @@
         .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
     }
 
+    function getTodayExerciseLog(exerciseId) {
+      const today = todayISO();
+      return state.logs
+        .filter(log => log.exerciseId === exerciseId && log.date === today)
+        .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
+    }
+
     function getSuggestedWeight(ex, last) {
       if (!last) return ex.startWeight;
       const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
@@ -1149,15 +1372,18 @@
     function getAdvice(ex, last) {
       const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
       const total = last.reps.reduce((sum, r) => sum + Number(r || 0), 0);
+      const nextTotal = total + 1;
       const maxTotal = ex.maxReps * ex.sets;
+      const unit = ex.unit === 'sec' ? 'seconds' : 'reps';
 
       if (allHitTop && !['', 'BW', null, undefined].includes(last.weight)) {
-        return `Increase next time by ${ex.increment}${ex.unit === 'sec' ? ' sec' : 'kg'}.`;
+        const nextWeight = Number((parseFloat(last.weight) + ex.increment).toFixed(1));
+        return `Increase to ${nextWeight}${ex.unit === 'sec' ? ' sec' : 'kg'} next time.`;
       }
       if (allHitTop) {
         return 'Increase the challenge next time.';
       }
-      return `Stay the same and beat ${total}/${maxTotal}.`;
+      return `Stay at ${last.weight}${ex.unit === 'kg' ? 'kg' : ex.unit === 'sec' ? ' sec' : ''}. Aim for ${nextTotal}+ total ${unit} next time.`;
     }
 
     function saveExercise(workoutKey, exerciseId) {
@@ -1178,8 +1404,9 @@
         return;
       }
 
+      const existingToday = getTodayExerciseLog(exerciseId);
       const log = {
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        id: existingToday ? existingToday.id : makeId(),
         savedAt: new Date().toISOString(),
         date: todayISO(),
         week: getCurrentWeek(),
@@ -1190,21 +1417,158 @@
         weight: weightRaw,
         reps,
         unit: ex.unit || 'kg',
-        advice: getAdvice(ex, { weight: weightRaw, reps })
+        advice: getAdvice(ex, { weight: weightRaw, reps, unit: ex.unit || 'kg' })
       };
 
-      state.logs.push(log);
+      if (existingToday) {
+        state.logs = state.logs.map(item => item.id === existingToday.id ? log : item);
+      } else {
+        state.logs.push(log);
+      }
+
       saveState();
       renderWorkout(workoutKey);
-      showToast(`${ex.name} saved.`);
+      showToast(existingToday ? `${ex.name} updated.` : `${ex.name} saved.`);
+
+      if (guidedMode) {
+        setTimeout(() => {
+          const completion = getWorkoutCompletion(workoutKey);
+          if (completion.completed === completion.total) renderSessionSummary(workoutKey);
+        }, 50);
+      }
+    }
+
+    function makeId() {
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
+      return String(Date.now()) + '_' + Math.random().toString(16).slice(2);
     }
 
     function toggleHowTo(id) {
       document.getElementById(`how_${id}`).classList.toggle('open');
     }
 
+    function toggleWarmup(id) {
+      document.getElementById(`warmup_${id}`).classList.toggle('open');
+    }
+
     function toggleBox(id) {
       document.getElementById(id).classList.toggle('open');
+    }
+
+    function startGuidedWorkout() {
+      guidedMode = !guidedMode;
+      guidedIndex = getFirstIncompleteIndex(currentWorkout);
+      document.getElementById('guidedToggleBtn').textContent = guidedMode ? 'Exit Workout Mode' : 'Start Workout Mode';
+      renderWorkout(currentWorkout);
+    }
+
+    function getFirstIncompleteIndex(key) {
+      const exercises = workouts[key].exercises;
+      const index = exercises.findIndex(ex => !getTodayExerciseLog(ex.id));
+      return index === -1 ? 0 : index;
+    }
+
+    function nextGuidedExercise() {
+      const workout = workouts[currentWorkout];
+      if (guidedIndex < workout.exercises.length - 1) {
+        guidedIndex++;
+        stopTimer();
+        renderWorkout(currentWorkout);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        guidedMode = false;
+        stopTimer();
+        document.getElementById('guidedToggleBtn').textContent = 'Start Workout Mode';
+        renderWorkout(currentWorkout);
+        showToast('Workout finished.');
+      }
+    }
+
+    function previousGuidedExercise() {
+      if (guidedIndex > 0) {
+        guidedIndex--;
+        stopTimer();
+        renderWorkout(currentWorkout);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    function renderSessionSummary(key) {
+      const box = document.getElementById('sessionSummary');
+      if (!box) return;
+      const completion = getWorkoutCompletion(key);
+      const today = todayISO();
+      const logs = workouts[key].exercises
+        .map(ex => getTodayExerciseLog(ex.id))
+        .filter(Boolean);
+
+      if (completion.completed !== completion.total) {
+        box.innerHTML = '';
+        return;
+      }
+
+      const totalSets = logs.reduce((sum, log) => sum + log.reps.length, 0);
+      const mainLift = logs[0];
+      const nextMain = mainLift ? mainLift.advice : '';
+
+      box.innerHTML = `
+        <div class="card saved-today">
+          <div class="exercise-head">
+            <div>
+              <h3>${workouts[key].title} Complete</h3>
+              <p class="mini">${formatDate(today)} · Week ${getCurrentWeek()}</p>
+            </div>
+            <span class="badge green">Done</span>
+          </div>
+          <div class="exercise-meta">
+            <div class="meta-box"><span>Exercises</span><strong>${completion.completed}/${completion.total}</strong></div>
+            <div class="meta-box"><span>Working sets</span><strong>${totalSets}</strong></div>
+            <div class="meta-box"><span>Main lift</span><strong>${mainLift ? `${mainLift.exerciseName}: ${mainLift.weight}${mainLift.unit === 'kg' ? 'kg' : ''}` : 'Saved'}</strong></div>
+          </div>
+          <p class="mini"><strong>Next main target:</strong> ${nextMain}</p>
+        </div>
+      `;
+    }
+
+    function startTimer(id, seconds) {
+      stopTimer();
+      timerRemaining = seconds;
+      updateTimerDisplay(id);
+      timerInterval = setInterval(() => {
+        timerRemaining--;
+        updateTimerDisplay(id);
+        if (timerRemaining <= 0) {
+          stopTimer(false);
+          showToast('Rest done. Go again.');
+          vibratePhone();
+        }
+      }, 1000);
+    }
+
+    function stopTimer(clearDisplays = true) {
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      if (clearDisplays) {
+        document.querySelectorAll('[id^="timer_"]').forEach(el => {
+          const card = el.closest('.howto');
+          if (!card) return;
+        });
+      }
+    }
+
+    function updateTimerDisplay(id) {
+      const el = document.getElementById(`timer_${id}`);
+      if (el) el.textContent = formatTimer(timerRemaining);
+    }
+
+    function formatTimer(seconds) {
+      const mins = Math.floor(seconds / 60);
+      const secs = seconds % 60;
+      return `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function vibratePhone() {
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
     }
 
     function openProgress() {
@@ -1256,7 +1620,7 @@
       }
 
       state.progress.push({
-        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        id: makeId(),
         savedAt: new Date().toISOString(),
         date,
         weight,
@@ -1297,8 +1661,17 @@
           <p><strong>Weight:</strong> ${item.weight ? `${item.weight}kg` : 'Not entered'}</p>
           <p><strong>Body Fat:</strong> ${item.bodyFat ? `${item.bodyFat}%` : 'Not entered'}</p>
           ${item.notes ? `<p><strong>Notes:</strong> ${escapeHtml(item.notes)}</p>` : ''}
+          <div class="pill-row"><button class="small-btn danger" onclick="deleteProgress('${item.id}')">Delete</button></div>
         </div>
       `).join('');
+    }
+
+    function deleteProgress(id) {
+      state.progress = state.progress.filter(item => item.id !== id);
+      saveState();
+      renderProgressSummary();
+      renderProgressHistory(false);
+      showToast('Progress check-in deleted.');
     }
 
     function openHistory() {
@@ -1322,10 +1695,23 @@
           <p>${log.weight}${log.unit === 'kg' ? 'kg' : log.unit === 'sec' ? ' sec' : ''} — ${log.reps.join(' / ')}</p>
           <p>${log.advice}</p>
           <div class="pill-row">
+            <button class="small-btn soft" onclick="editFromHistory('${log.workout}', '${log.exerciseId}', '${log.date}')">Edit</button>
             <button class="small-btn danger" onclick="deleteLog('${log.id}')">Delete</button>
           </div>
         </div>
       `).join('');
+    }
+
+    function editFromHistory(workoutKey, exerciseId, date) {
+      if (date !== todayISO()) {
+        showToast('Only today’s entries can be edited on the workout screen.');
+        return;
+      }
+      openWorkout(workoutKey);
+      setTimeout(() => {
+        const card = document.getElementById(`card_${exerciseId}`);
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
     }
 
     function deleteLog(id) {
@@ -1375,6 +1761,57 @@
       }
     }
 
+    function exportData() {
+      const data = {
+        app: 'Home Gym Tracker',
+        version: 2,
+        exportedAt: new Date().toISOString(),
+        state
+      };
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `home-gym-tracker-backup-${todayISO()}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('Backup exported.');
+    }
+
+    function importData(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const imported = JSON.parse(e.target.result);
+          const importedState = imported.state || imported;
+          if (!importedState.settings || !Array.isArray(importedState.logs) || !Array.isArray(importedState.progress)) {
+            showToast('Invalid backup file.');
+            return;
+          }
+          if (confirm('Import this backup? It will replace the data on this device.')) {
+            state = {
+              ...structuredClone(defaultState),
+              ...importedState,
+              settings: { ...defaultState.settings, ...(importedState.settings || {}) },
+              logs: importedState.logs || [],
+              progress: importedState.progress || []
+            };
+            saveState();
+            openSettings();
+            showToast('Backup imported.');
+          }
+        } catch (err) {
+          showToast('Could not read backup file.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
     function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
@@ -1393,7 +1830,44 @@
       }[char]));
     }
 
+    function createManifest() {
+      const manifest = {
+        name: "Home Gym Tracker",
+        short_name: 'Gym Tracker',
+        start_url: '.',
+        display: 'standalone',
+        background_color: '#0f172a',
+        theme_color: '#006edb',
+        description: 'A simple home gym workout and progress tracker.'
+      };
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('link');
+      link.rel = 'manifest';
+      link.href = url;
+      document.head.appendChild(link);
+    }
+
+    window.addEventListener('beforeinstallprompt', event => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      document.getElementById('installAction').style.display = 'grid';
+    });
+
+    async function installApp() {
+      if (!deferredInstallPrompt) {
+        showToast('Use your browser menu to add it to your home screen.');
+        return;
+      }
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      document.getElementById('installAction').style.display = 'none';
+    }
+
+    createManifest();
     renderTopSummary();
+    renderHomeButtons();
   </script>
 </body>
 </html>
