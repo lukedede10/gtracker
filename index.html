@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luke's Home Gym Tracker</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111c33;
+      --panel2: #16233f;
+      --card: #ffffff;
+      --text: #102033;
+      --muted: #64748b;
+      --blue: #006edb;
+      --red: #e60000;
+      --green: #15803d;
+      --amber: #b45309;
+      --light: #f8fafc;
+      --border: #e2e8f0;
+      --shadow: 0 12px 30px rgba(2, 8, 23, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(160deg, #0f172a 0%, #14213d 45%, #006edb 130%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    .app {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 18px 14px 40px;
+    }
+
+    .hero {
+      color: white;
+      padding: 18px 4px 12px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: -0.6px;
+    }
+
+    .hero p {
+      margin: 8px 0 0;
+      color: #dbeafe;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .top-summary {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 10px 0 14px;
+    }
+
+    .summary-card {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
+      padding: 12px;
+      backdrop-filter: blur(8px);
+    }
+
+    .summary-card span {
+      display: block;
+      font-size: 12px;
+      color: #bfdbfe;
+      margin-bottom: 4px;
+    }
+
+    .summary-card strong {
+      font-size: 18px;
+    }
+
+    .screen {
+      display: none;
+    }
+
+    .screen.active {
+      display: block;
+    }
+
+    .panel {
+      background: var(--light);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .section-title h2,
+    .section-title h3 {
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    .section-title h2 {
+      font-size: 22px;
+    }
+
+    .section-title h3 {
+      font-size: 18px;
+    }
+
+    .mini {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 800;
+      cursor: pointer;
+      font-size: 15px;
+      min-height: 46px;
+      transition: transform 0.08s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    button:active,
+    .button:active {
+      transform: scale(0.985);
+    }
+
+    .primary {
+      background: var(--blue);
+      color: white;
+      box-shadow: 0 8px 18px rgba(0, 110, 219, 0.24);
+    }
+
+    .danger {
+      background: var(--red);
+      color: white;
+    }
+
+    .dark {
+      background: var(--bg);
+      color: white;
+    }
+
+    .soft {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .ghost {
+      background: white;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .amber {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .workout-btn {
+      text-align: left;
+      background: white;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+      min-height: 74px;
+    }
+
+    .workout-btn strong {
+      display: block;
+      font-size: 17px;
+      margin-bottom: 4px;
+    }
+
+    .workout-btn span {
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 14px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, 0.06);
+    }
+
+    .exercise-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .exercise-head h3 {
+      margin: 0;
+      font-size: 20px;
+      line-height: 1.1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 6px 9px;
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .badge.blue {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .badge.green {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .badge.amber {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .exercise-meta {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .meta-box {
+      background: #f1f5f9;
+      border-radius: 16px;
+      padding: 10px;
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    .meta-box span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+
+    .meta-box strong {
+      font-size: 15px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 800;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      font-size: 16px;
+      background: white;
+      color: var(--text);
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(0, 110, 219, 0.12);
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .actions.single {
+      grid-template-columns: 1fr;
+    }
+
+    .howto,
+    .hidden-box {
+      display: none;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 12px;
+      margin-top: 12px;
+      color: #334155;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .howto.open,
+    .hidden-box.open {
+      display: block;
+    }
+
+    .howto ul {
+      margin: 8px 0 0 18px;
+      padding: 0;
+    }
+
+    .howto li {
+      margin-bottom: 5px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      background: #0f172a;
+      color: white;
+      border-radius: 999px;
+      padding: 11px 16px;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease, bottom 0.2s ease;
+      z-index: 50;
+      max-width: calc(100vw - 28px);
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .toast.show {
+      opacity: 1;
+      bottom: 28px;
+    }
+
+    .history-card {
+      border-left: 5px solid var(--blue);
+    }
+
+    .history-card h4 {
+      margin: 0 0 5px;
+      font-size: 17px;
+    }
+
+    .history-card p {
+      margin: 4px 0;
+      color: #475569;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    .nav-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .small-btn {
+      min-height: 34px;
+      padding: 8px 10px;
+      font-size: 12px;
+      border-radius: 999px;
+    }
+
+    .empty {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px 8px;
+      line-height: 1.45;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 14px 0;
+    }
+
+    .setting-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (min-width: 620px) {
+      .button-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .exercise-meta {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .top-summary {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header class="hero">
+      <h1>Luke's Home Gym Tracker</h1>
+      <p>Show what you did last time, suggest what to do today, then save the result and move on.</p>
+    </header>
+
+    <section class="top-summary" id="topSummary"></section>
+
+    <main id="homeScreen" class="screen active">
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h2>Choose workout</h2>
+            <p class="mini">Start date: 11/05/26. Data saves on this device/browser.</p>
+          </div>
+        </div>
+
+        <div class="button-grid">
+          <button class="workout-btn" onclick="openWorkout('A')">
+            <strong>Workout A</strong>
+            <span>Squat / Bench / Row</span>
+          </button>
+          <button class="workout-btn" onclick="openWorkout('B')">
+            <strong>Workout B</strong>
+            <span>RDL / Shoulders / Arms</span>
+          </button>
+          <button class="workout-btn" onclick="openWorkout('C')">
+            <strong>Workout C</strong>
+            <span>Full Body / Conditioning</span>
+          </button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h3>Progress & settings</h3>
+            <p class="mini">Kept off the main workout flow, but easy to open when needed.</p>
+          </div>
+        </div>
+        <div class="button-grid">
+          <button class="soft" onclick="openProgress()">Progress Check-In</button>
+          <button class="ghost" onclick="openHistory()">Workout History</button>
+          <button class="dark" onclick="openSettings()">Settings</button>
+        </div>
+      </section>
+    </main>
+
+    <main id="workoutScreen" class="screen">
+      <div class="nav-row">
+        <button class="ghost" onclick="goHome()">← Home</button>
+        <button class="soft" onclick="openHistory()">History</button>
+      </div>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h2 id="workoutTitle">Workout</h2>
+            <p id="workoutSub" class="mini"></p>
+          </div>
+        </div>
+        <div id="exerciseList"></div>
+      </section>
+    </main>
+
+    <main id="progressScreen" class="screen">
+      <div class="nav-row">
+        <button class="ghost" onclick="goHome()">← Home</button>
+        <button class="soft" onclick="renderProgressHistory(true)">View History</button>
+      </div>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h2>Progress Check-In</h2>
+            <p class="mini">Track weight and body fat without cluttering the workout screen.</p>
+          </div>
+        </div>
+
+        <div id="progressSummary" class="exercise-meta"></div>
+
+        <button class="primary" style="width:100%; margin-top:10px;" onclick="toggleBox('progressFormBox')">Add New Check-In</button>
+
+        <div id="progressFormBox" class="hidden-box">
+          <div class="form-grid">
+            <div>
+              <label>Date</label>
+              <input id="progressDate" type="date" />
+            </div>
+            <div>
+              <label>Body weight</label>
+              <input id="progressWeight" type="number" step="0.1" placeholder="kg" />
+            </div>
+            <div>
+              <label>Body fat %</label>
+              <input id="progressBodyFat" type="number" step="0.1" placeholder="%" />
+            </div>
+            <div class="full">
+              <label>Notes</label>
+              <textarea id="progressNotes" placeholder="Optional: energy, clothes fit, strength, sleep etc."></textarea>
+            </div>
+          </div>
+          <div class="actions single">
+            <button class="green" onclick="saveProgressCheckIn()">Save Check-In</button>
+          </div>
+        </div>
+
+        <div id="progressHistoryBox" class="hidden-box"></div>
+      </section>
+    </main>
+
+    <main id="historyScreen" class="screen">
+      <div class="nav-row">
+        <button class="ghost" onclick="goHome()">← Home</button>
+        <button class="danger" onclick="confirmClearWorkoutHistory()">Clear Workouts</button>
+      </div>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h2>Workout History</h2>
+            <p class="mini">Most recent entries appear first.</p>
+          </div>
+        </div>
+        <div id="historyList"></div>
+      </section>
+    </main>
+
+    <main id="settingsScreen" class="screen">
+      <div class="nav-row">
+        <button class="ghost" onclick="goHome()">← Home</button>
+        <button class="danger" onclick="confirmResetAll()">Reset All</button>
+      </div>
+
+      <section class="panel">
+        <div class="section-title">
+          <div>
+            <h2>Settings</h2>
+            <p class="mini">Set your starting stats and keep the tracker personalised.</p>
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div>
+            <label>Start date</label>
+            <input id="startDateInput" type="date" />
+          </div>
+          <div>
+            <label>Goal</label>
+            <input id="goalInput" type="text" placeholder="Get leaner while maintaining size" />
+          </div>
+          <div>
+            <label>Starting weight</label>
+            <input id="startWeightInput" type="number" step="0.1" placeholder="kg" />
+          </div>
+          <div>
+            <label>Starting body fat %</label>
+            <input id="startBodyFatInput" type="number" step="0.1" placeholder="%" />
+          </div>
+        </div>
+
+        <div class="actions single">
+          <button class="primary" onclick="saveSettings()">Save Settings</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script>
+    const STORAGE_KEY = 'lukeHomeGymTracker_v1';
+
+    const defaultState = {
+      settings: {
+        startDate: '2026-05-11',
+        goal: 'Get leaner while maintaining size',
+        startWeight: '',
+        startBodyFat: ''
+      },
+      logs: [],
+      progress: []
+    };
+
+    const workouts = {
+      A: {
+        title: 'Workout A',
+        subtitle: 'Squat / Bench / Row',
+        exercises: [
+          {
+            id: 'back_squat',
+            name: 'Back Squat',
+            target: '4 x 6–8',
+            sets: 4,
+            minReps: 6,
+            maxReps: 8,
+            startWeight: 90,
+            increment: 2.5,
+            how: [
+              'Bar across your upper back, not your neck.',
+              'Feet roughly shoulder-width, toes slightly out.',
+              'Brace your stomach like someone is about to punch you.',
+              'Sit down between your hips and keep your knees tracking over your toes.',
+              'Drive back up through your mid-foot and keep your chest controlled.'
+            ],
+            avoid: ['Knees collapsing in', 'Heels lifting', 'Folding forward under the bar']
+          },
+          {
+            id: 'bench_press',
+            name: 'Bench Press',
+            target: '4 x 6–8',
+            sets: 4,
+            minReps: 6,
+            maxReps: 8,
+            startWeight: 60,
+            increment: 2.5,
+            how: [
+              'Eyes under the bar, shoulder blades pulled back and down.',
+              'Feet planted firmly on the floor.',
+              'Lower the bar to your lower chest under control.',
+              'Pause briefly, then press up with wrists stacked over elbows.'
+            ],
+            avoid: ['Bouncing the bar', 'Elbows flaring too wide', 'Lifting your bum off the bench']
+          },
+          {
+            id: 'barbell_row',
+            name: 'Barbell Row',
+            target: '4 x 8–10',
+            sets: 4,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: 55,
+            increment: 2.5,
+            how: [
+              'Hinge forward with a flat back and soft knees.',
+              'Keep the bar close and pull towards your lower ribs.',
+              'Squeeze your shoulder blades, then lower under control.'
+            ],
+            avoid: ['Jerking the bar', 'Turning it into a deadlift', 'Rounding your lower back']
+          },
+          {
+            id: 'db_shoulder_press',
+            name: 'Dumbbell Shoulder Press',
+            target: '3 x 8–10',
+            sets: 3,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: '',
+            increment: 2,
+            how: [
+              'Start with dumbbells at shoulder height.',
+              'Brace your core and press overhead.',
+              'Lower under control until the dumbbells return to shoulder level.'
+            ],
+            avoid: ['Overarching your back', 'Bouncing reps', 'Going too heavy too early']
+          },
+          {
+            id: 'leg_extension',
+            name: 'Leg Extension',
+            target: '3 x 10–15',
+            sets: 3,
+            minReps: 10,
+            maxReps: 15,
+            startWeight: '',
+            increment: 2.5,
+            how: [
+              'Sit back into the bench with the pad on your lower shin/ankle.',
+              'Extend your legs until straight and squeeze your quads.',
+              'Lower slowly rather than letting the weight drop.'
+            ],
+            avoid: ['Kicking the weight up', 'Rushing the lowering phase', 'Using more weight than you can control']
+          },
+          {
+            id: 'plank',
+            name: 'Plank',
+            target: '3 x 30–45 sec',
+            sets: 3,
+            minReps: 30,
+            maxReps: 45,
+            startWeight: 'BW',
+            increment: 5,
+            unit: 'sec',
+            how: [
+              'Elbows under shoulders, body in a straight line.',
+              'Squeeze glutes and brace your stomach.',
+              'Hold without letting your hips sag or rise too high.'
+            ],
+            avoid: ['Sagging hips', 'Holding your breath', 'Letting shoulders creep up']
+          }
+        ]
+      },
+      B: {
+        title: 'Workout B',
+        subtitle: 'RDL / Shoulders / Arms',
+        exercises: [
+          {
+            id: 'romanian_deadlift',
+            name: 'Romanian Deadlift',
+            target: '4 x 8–10',
+            sets: 4,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: 75,
+            increment: 2.5,
+            how: [
+              'Hold the bar in front of your thighs with a soft bend in your knees.',
+              'Push your hips back and let the bar slide down your thighs.',
+              'Stop when you feel a strong hamstring stretch while keeping your back flat.',
+              'Drive your hips forward to stand tall.'
+            ],
+            avoid: ['Squatting the movement', 'Rounding your back', 'Letting the bar drift away from your legs']
+          },
+          {
+            id: 'overhead_press',
+            name: 'Overhead Press',
+            target: '4 x 5–8',
+            sets: 4,
+            minReps: 5,
+            maxReps: 8,
+            startWeight: 35,
+            increment: 2.5,
+            how: [
+              'Start with the bar at upper chest height.',
+              'Hands just outside shoulders, glutes and abs tight.',
+              'Press straight up, move your head slightly back, then bring your head through at the top.',
+              'Lower back to upper chest under control.'
+            ],
+            avoid: ['Leaning back too far', 'Pressing around your face', 'Turning it into a standing incline press']
+          },
+          {
+            id: 'incline_db_press',
+            name: 'Incline Dumbbell Press',
+            target: '3 x 8–12',
+            sets: 3,
+            minReps: 8,
+            maxReps: 12,
+            startWeight: '',
+            increment: 2,
+            how: [
+              'Set the bench to a slight incline.',
+              'Start with dumbbells near your upper chest.',
+              'Press up and slightly in, then lower under control.'
+            ],
+            avoid: ['Flaring elbows too wide', 'Short reps', 'Letting shoulders roll forward']
+          },
+          {
+            id: 'one_arm_db_row',
+            name: 'One-Arm Dumbbell Row',
+            target: '3 x 10–12 each side',
+            sets: 3,
+            minReps: 10,
+            maxReps: 12,
+            startWeight: '',
+            increment: 2,
+            how: [
+              'Brace one hand and knee on the bench with your back flat.',
+              'Pull the dumbbell towards your hip, not your shoulder.',
+              'Squeeze your back and lower slowly.'
+            ],
+            avoid: ['Twisting your body', 'Shrugging the weight up', 'Rushing the lowering phase']
+          },
+          {
+            id: 'preacher_curl',
+            name: 'Preacher Curl',
+            target: '3 x 10–12',
+            sets: 3,
+            minReps: 10,
+            maxReps: 12,
+            startWeight: '',
+            increment: 2,
+            how: [
+              'Keep your upper arms fixed against the preacher pad.',
+              'Curl up, squeeze briefly, then lower slowly until nearly straight.',
+              'Keep control through the full movement.'
+            ],
+            avoid: ['Half reps', 'Lifting elbows off the pad', 'Swinging']
+          },
+          {
+            id: 'close_grip_bench',
+            name: 'Close-Grip Bench Press',
+            target: '3 x 8–10',
+            sets: 3,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: 50,
+            increment: 2.5,
+            how: [
+              'Set up like a normal bench press but bring your hands slightly closer.',
+              'Lower to your lower chest with elbows closer to your body.',
+              'Press up smoothly and keep wrists stacked.'
+            ],
+            avoid: ['Going too narrow', 'Wrists bending back', 'Elbows flaring hard']
+          }
+        ]
+      },
+      C: {
+        title: 'Workout C',
+        subtitle: 'Full Body / Conditioning',
+        exercises: [
+          {
+            id: 'front_squat',
+            name: 'Front Squat / Goblet Squat',
+            target: '3 x 8–10',
+            sets: 3,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: 50,
+            increment: 2.5,
+            how: [
+              'For front squat, keep the bar across your front shoulders with elbows high.',
+              'Stay upright as you squat down.',
+              'Drive back up through your mid-foot.',
+              'If front squats feel horrible, use a heavy goblet squat instead.'
+            ],
+            avoid: ['Elbows dropping', 'Bar rolling forward', 'Rushing depth']
+          },
+          {
+            id: 'bench_press_light',
+            name: 'Bench Press',
+            target: '3 x 8–10',
+            sets: 3,
+            minReps: 8,
+            maxReps: 10,
+            startWeight: 55,
+            increment: 2.5,
+            how: [
+              'Same setup as Workout A, but slightly lighter.',
+              'Control the lowering phase and press smoothly.',
+              'Leave 1–2 reps in reserve.'
+            ],
+            avoid: ['Turning the lighter day into a max day', 'Bouncing the bar', 'Losing tightness']
+          },
+          {
+            id: 'barbell_row_light',
+            name: 'Barbell Row',
+            target: '3 x 10–12',
+            sets: 3,
+            minReps: 10,
+            maxReps: 12,
+            startWeight: 50,
+            increment: 2.5,
+            how: [
+              'Hinge with a flat back.',
+              'Pull towards your lower ribs and squeeze your back.',
+              'Lower with control and keep the movement strict.'
+            ],
+            avoid: ['Using your hips to throw the bar', 'Rounding your back', 'Cutting the range short']
+          },
+          {
+            id: 'hip_thrust',
+            name: 'Barbell Hip Thrust',
+            target: '3 x 10–12',
+            sets: 3,
+            minReps: 10,
+            maxReps: 12,
+            startWeight: 80,
+            increment: 5,
+            how: [
+              'Upper back against the bench, bar across your hips with padding.',
+              'Feet planted and shins roughly vertical at the top.',
+              'Drive hips up, squeeze glutes, then lower under control.'
+            ],
+            avoid: ['Overarching your lower back', 'Pushing only through toes', 'Rushing the top squeeze']
+          },
+          {
+            id: 'lateral_raise',
+            name: 'Lateral Raise',
+            target: '3 x 12–15',
+            sets: 3,
+            minReps: 12,
+            maxReps: 15,
+            startWeight: '',
+            increment: 1,
+            how: [
+              'Stand tall with dumbbells by your sides.',
+              'Raise arms out to the side to shoulder height with a slight bend in elbows.',
+              'Lower slowly and keep tension on the shoulders.'
+            ],
+            avoid: ['Swinging', 'Shrugging', 'Going too heavy']
+          },
+          {
+            id: 'hamstring_curl',
+            name: 'Hamstring Curl',
+            target: '3 x 10–12',
+            sets: 3,
+            minReps: 10,
+            maxReps: 12,
+            startWeight: '',
+            increment: 2.5,
+            how: [
+              'Use the leg developer if it allows hamstring curls.',
+              'Curl your heels towards your bum and squeeze the hamstrings.',
+              'Lower slowly without letting the weight drop.'
+            ],
+            avoid: ['Rushing reps', 'Dropping the weight', 'Lifting hips off the pad']
+          },
+          {
+            id: 'punch_bag',
+            name: 'Punch Bag',
+            target: '5 x 1 min rounds',
+            sets: 5,
+            minReps: 60,
+            maxReps: 60,
+            startWeight: 'BW',
+            increment: 15,
+            unit: 'sec',
+            how: [
+              'Work in sharp rounds rather than sloppy all-out swinging.',
+              'Keep hands up, move your feet, and breathe.',
+              'Rest around one minute between rounds.'
+            ],
+            avoid: ['Wild punches', 'Dropping your guard', 'Going so hard your form falls apart']
+          }
+        ]
+      }
+    };
+
+    let state = loadState();
+    let currentWorkout = null;
+
+    function loadState() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return structuredClone(defaultState);
+        const parsed = JSON.parse(saved);
+        return {
+          ...structuredClone(defaultState),
+          ...parsed,
+          settings: { ...defaultState.settings, ...(parsed.settings || {}) },
+          logs: parsed.logs || [],
+          progress: parsed.progress || []
+        };
+      } catch (e) {
+        return structuredClone(defaultState);
+      }
+    }
+
+    function saveState() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      renderTopSummary();
+    }
+
+    function todayISO() {
+      const d = new Date();
+      return d.toISOString().split('T')[0];
+    }
+
+    function formatDate(iso) {
+      if (!iso) return 'Not set';
+      const [y, m, d] = iso.split('-');
+      return `${d}/${m}/${y.slice(2)}`;
+    }
+
+    function getCurrentWeek() {
+      const start = new Date(state.settings.startDate + 'T00:00:00');
+      const now = new Date();
+      if (Number.isNaN(start.getTime())) return 1;
+      const diff = now - start;
+      const week = Math.floor(diff / (1000 * 60 * 60 * 24 * 7)) + 1;
+      return Math.max(1, week);
+    }
+
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderTopSummary();
+    }
+
+    function goHome() {
+      showScreen('homeScreen');
+    }
+
+    function renderTopSummary() {
+      const latest = getLatestProgress();
+      const startWeight = state.settings.startWeight ? `${state.settings.startWeight}kg` : 'Not set';
+      const latestWeight = latest && latest.weight ? `${latest.weight}kg` : startWeight;
+      const bodyFat = latest && latest.bodyFat ? `${latest.bodyFat}%` : (state.settings.startBodyFat ? `${state.settings.startBodyFat}%` : 'Not set');
+
+      document.getElementById('topSummary').innerHTML = `
+        <div class="summary-card"><span>Week</span><strong>${getCurrentWeek()}</strong></div>
+        <div class="summary-card"><span>Start</span><strong>${formatDate(state.settings.startDate)}</strong></div>
+        <div class="summary-card"><span>Weight</span><strong>${latestWeight}</strong></div>
+        <div class="summary-card"><span>Body Fat</span><strong>${bodyFat}</strong></div>
+      `;
+    }
+
+    function openWorkout(key) {
+      currentWorkout = key;
+      document.getElementById('workoutTitle').textContent = workouts[key].title;
+      document.getElementById('workoutSub').textContent = workouts[key].subtitle;
+      renderWorkout(key);
+      showScreen('workoutScreen');
+    }
+
+    function renderWorkout(key) {
+      const container = document.getElementById('exerciseList');
+      const workout = workouts[key];
+      container.innerHTML = workout.exercises.map(ex => renderExerciseCard(key, ex)).join('');
+    }
+
+    function renderExerciseCard(workoutKey, ex) {
+      const last = getLatestExerciseLog(ex.id);
+      const suggested = getSuggestedWeight(ex, last);
+      const lastText = last ? `${last.weight}${last.unit || 'kg'} — ${last.reps.join(' / ')}` : 'No data yet';
+      const advice = last ? getAdvice(ex, last) : `Start with ${formatWeight(suggested, ex)} and keep it clean.`;
+      const repsInputs = Array.from({ length: ex.sets }, (_, i) => `
+        <div>
+          <label>Set ${i + 1} ${ex.unit === 'sec' ? 'seconds' : 'reps'}</label>
+          <input id="${ex.id}_set_${i}" type="number" min="0" step="1" inputmode="numeric" placeholder="${ex.minReps}" />
+        </div>
+      `).join('');
+
+      return `
+        <article class="card" id="card_${ex.id}">
+          <div class="exercise-head">
+            <div>
+              <h3>${ex.name}</h3>
+              <p class="mini">Target: ${ex.target}</p>
+            </div>
+            <span class="badge blue">${formatWeight(suggested, ex)}</span>
+          </div>
+
+          <div class="exercise-meta">
+            <div class="meta-box"><span>Last time</span><strong>${lastText}</strong></div>
+            <div class="meta-box"><span>Suggested today</span><strong>${formatWeight(suggested, ex)}</strong></div>
+            <div class="meta-box"><span>Next aim</span><strong>${advice}</strong></div>
+          </div>
+
+          <div class="form-grid">
+            <div class="full">
+              <label>${ex.unit === 'sec' ? 'Round length / time' : 'Weight used'}</label>
+              <input id="${ex.id}_weight" type="text" inputmode="decimal" value="${inputWeightValue(suggested, ex)}" placeholder="${ex.unit === 'sec' ? 'Bodyweight / seconds' : 'kg'}" />
+            </div>
+            ${repsInputs}
+          </div>
+
+          <div class="actions">
+            <button class="ghost" onclick="toggleHowTo('${ex.id}')">How to perform</button>
+            <button class="green" onclick="saveExercise('${workoutKey}', '${ex.id}')">Save Exercise</button>
+          </div>
+
+          <div id="how_${ex.id}" class="howto">
+            <strong>${ex.name} — How to perform</strong>
+            <ul>${ex.how.map(item => `<li>${item}</li>`).join('')}</ul>
+            <div class="divider"></div>
+            <strong>Avoid</strong>
+            <ul>${ex.avoid.map(item => `<li>${item}</li>`).join('')}</ul>
+          </div>
+        </article>
+      `;
+    }
+
+    function inputWeightValue(suggested, ex) {
+      if (suggested === '' || suggested === null || suggested === undefined) return '';
+      if (suggested === 'BW') return 'BW';
+      return suggested;
+    }
+
+    function formatWeight(value, ex) {
+      if (value === '' || value === null || value === undefined) return 'Set today';
+      if (value === 'BW') return ex.unit === 'sec' ? 'Bodyweight' : 'BW';
+      return ex.unit === 'sec' ? `${value} sec` : `${value}kg`;
+    }
+
+    function getLatestExerciseLog(exerciseId) {
+      return state.logs
+        .filter(log => log.exerciseId === exerciseId)
+        .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
+    }
+
+    function getSuggestedWeight(ex, last) {
+      if (!last) return ex.startWeight;
+      const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
+      if (allHitTop && !['', 'BW', null, undefined].includes(last.weight)) {
+        const numeric = parseFloat(last.weight);
+        if (!Number.isNaN(numeric)) return Number((numeric + ex.increment).toFixed(1));
+      }
+      return last.weight;
+    }
+
+    function getAdvice(ex, last) {
+      const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
+      const total = last.reps.reduce((sum, r) => sum + Number(r || 0), 0);
+      const maxTotal = ex.maxReps * ex.sets;
+
+      if (allHitTop && !['', 'BW', null, undefined].includes(last.weight)) {
+        return `Increase next time by ${ex.increment}${ex.unit === 'sec' ? ' sec' : 'kg'}.`;
+      }
+      if (allHitTop) {
+        return 'Increase the challenge next time.';
+      }
+      return `Stay the same and beat ${total}/${maxTotal}.`;
+    }
+
+    function saveExercise(workoutKey, exerciseId) {
+      const ex = workouts[workoutKey].exercises.find(item => item.id === exerciseId);
+      const weightRaw = document.getElementById(`${exerciseId}_weight`).value.trim();
+      const reps = Array.from({ length: ex.sets }, (_, i) => {
+        const value = document.getElementById(`${exerciseId}_set_${i}`).value;
+        return value === '' ? null : Number(value);
+      });
+
+      if (!weightRaw) {
+        showToast('Add the weight used first.');
+        return;
+      }
+
+      if (reps.some(rep => rep === null || Number.isNaN(rep))) {
+        showToast('Add every set before saving.');
+        return;
+      }
+
+      const log = {
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        savedAt: new Date().toISOString(),
+        date: todayISO(),
+        week: getCurrentWeek(),
+        workout: workoutKey,
+        exerciseId,
+        exerciseName: ex.name,
+        target: ex.target,
+        weight: weightRaw,
+        reps,
+        unit: ex.unit || 'kg',
+        advice: getAdvice(ex, { weight: weightRaw, reps })
+      };
+
+      state.logs.push(log);
+      saveState();
+      renderWorkout(workoutKey);
+      showToast(`${ex.name} saved.`);
+    }
+
+    function toggleHowTo(id) {
+      document.getElementById(`how_${id}`).classList.toggle('open');
+    }
+
+    function toggleBox(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+
+    function openProgress() {
+      document.getElementById('progressDate').value = todayISO();
+      renderProgressSummary();
+      document.getElementById('progressHistoryBox').classList.remove('open');
+      showScreen('progressScreen');
+    }
+
+    function renderProgressSummary() {
+      const latest = getLatestProgress();
+      const startWeight = state.settings.startWeight ? `${state.settings.startWeight}kg` : 'Not set';
+      const startBodyFat = state.settings.startBodyFat ? `${state.settings.startBodyFat}%` : 'Not set';
+      const latestWeight = latest && latest.weight ? `${latest.weight}kg` : 'No check-in yet';
+      const latestBodyFat = latest && latest.bodyFat ? `${latest.bodyFat}%` : 'No check-in yet';
+
+      let weightChange = 'Not enough data';
+      let fatChange = 'Not enough data';
+
+      if (latest && latest.weight && state.settings.startWeight) {
+        const diff = Number(latest.weight) - Number(state.settings.startWeight);
+        weightChange = `${diff > 0 ? '+' : ''}${diff.toFixed(1)}kg from start`;
+      }
+
+      if (latest && latest.bodyFat && state.settings.startBodyFat) {
+        const diff = Number(latest.bodyFat) - Number(state.settings.startBodyFat);
+        fatChange = `${diff > 0 ? '+' : ''}${diff.toFixed(1)}% from start`;
+      }
+
+      document.getElementById('progressSummary').innerHTML = `
+        <div class="meta-box"><span>Starting weight</span><strong>${startWeight}</strong></div>
+        <div class="meta-box"><span>Latest weight</span><strong>${latestWeight}</strong><br><small>${weightChange}</small></div>
+        <div class="meta-box"><span>Body fat</span><strong>${latestBodyFat}</strong><br><small>${fatChange}</small></div>
+        <div class="meta-box"><span>Starting body fat</span><strong>${startBodyFat}</strong></div>
+        <div class="meta-box"><span>Last check-in</span><strong>${latest ? formatDate(latest.date) : 'None yet'}</strong></div>
+        <div class="meta-box"><span>Goal</span><strong>${state.settings.goal || 'Not set'}</strong></div>
+      `;
+    }
+
+    function saveProgressCheckIn() {
+      const date = document.getElementById('progressDate').value || todayISO();
+      const weight = document.getElementById('progressWeight').value.trim();
+      const bodyFat = document.getElementById('progressBodyFat').value.trim();
+      const notes = document.getElementById('progressNotes').value.trim();
+
+      if (!weight && !bodyFat) {
+        showToast('Add weight or body fat first.');
+        return;
+      }
+
+      state.progress.push({
+        id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        savedAt: new Date().toISOString(),
+        date,
+        weight,
+        bodyFat,
+        notes
+      });
+
+      saveState();
+      document.getElementById('progressWeight').value = '';
+      document.getElementById('progressBodyFat').value = '';
+      document.getElementById('progressNotes').value = '';
+      renderProgressSummary();
+      renderProgressHistory(false);
+      showToast('Progress check-in saved.');
+    }
+
+    function getLatestProgress() {
+      return state.progress
+        .slice()
+        .sort((a, b) => new Date(b.date) - new Date(a.date) || new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
+    }
+
+    function renderProgressHistory(openBox) {
+      const box = document.getElementById('progressHistoryBox');
+      if (openBox) box.classList.toggle('open');
+      const items = state.progress
+        .slice()
+        .sort((a, b) => new Date(b.date) - new Date(a.date) || new Date(b.savedAt) - new Date(a.savedAt));
+
+      if (!items.length) {
+        box.innerHTML = '<div class="empty">No progress check-ins yet.</div>';
+        return;
+      }
+
+      box.innerHTML = items.map(item => `
+        <div class="card history-card">
+          <h4>${formatDate(item.date)}</h4>
+          <p><strong>Weight:</strong> ${item.weight ? `${item.weight}kg` : 'Not entered'}</p>
+          <p><strong>Body Fat:</strong> ${item.bodyFat ? `${item.bodyFat}%` : 'Not entered'}</p>
+          ${item.notes ? `<p><strong>Notes:</strong> ${escapeHtml(item.notes)}</p>` : ''}
+        </div>
+      `).join('');
+    }
+
+    function openHistory() {
+      renderHistory();
+      showScreen('historyScreen');
+    }
+
+    function renderHistory() {
+      const list = document.getElementById('historyList');
+      const items = state.logs.slice().sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+
+      if (!items.length) {
+        list.innerHTML = '<div class="empty">No workout logs yet. Save your first exercise and it will appear here.</div>';
+        return;
+      }
+
+      list.innerHTML = items.map(log => `
+        <div class="card history-card">
+          <h4>${log.exerciseName}</h4>
+          <p><strong>${formatDate(log.date)} · Week ${log.week} · Workout ${log.workout}</strong></p>
+          <p>${log.weight}${log.unit === 'kg' ? 'kg' : log.unit === 'sec' ? ' sec' : ''} — ${log.reps.join(' / ')}</p>
+          <p>${log.advice}</p>
+          <div class="pill-row">
+            <button class="small-btn danger" onclick="deleteLog('${log.id}')">Delete</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function deleteLog(id) {
+      state.logs = state.logs.filter(log => log.id !== id);
+      saveState();
+      renderHistory();
+      showToast('Workout log deleted.');
+    }
+
+    function confirmClearWorkoutHistory() {
+      if (!state.logs.length) {
+        showToast('No workout history to clear.');
+        return;
+      }
+      if (confirm('Clear all workout history? Progress check-ins will stay.')) {
+        state.logs = [];
+        saveState();
+        renderHistory();
+        showToast('Workout history cleared.');
+      }
+    }
+
+    function openSettings() {
+      document.getElementById('startDateInput').value = state.settings.startDate;
+      document.getElementById('goalInput').value = state.settings.goal;
+      document.getElementById('startWeightInput').value = state.settings.startWeight;
+      document.getElementById('startBodyFatInput').value = state.settings.startBodyFat;
+      showScreen('settingsScreen');
+    }
+
+    function saveSettings() {
+      state.settings.startDate = document.getElementById('startDateInput').value || '2026-05-11';
+      state.settings.goal = document.getElementById('goalInput').value.trim() || 'Get leaner while maintaining size';
+      state.settings.startWeight = document.getElementById('startWeightInput').value.trim();
+      state.settings.startBodyFat = document.getElementById('startBodyFatInput').value.trim();
+      saveState();
+      showToast('Settings saved.');
+      renderTopSummary();
+    }
+
+    function confirmResetAll() {
+      if (confirm('Reset everything? This clears workouts, progress check-ins and settings on this device.')) {
+        state = structuredClone(defaultState);
+        saveState();
+        openSettings();
+        showToast('Tracker reset.');
+      }
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>'"]/g, char => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#039;',
+        '"': '&quot;'
+      }[char]));
+    }
+
+    renderTopSummary();
+  </script>
+</body>
+</html>
