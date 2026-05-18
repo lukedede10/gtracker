@@ -7,7 +7,6 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="Gym Tracker" />
   <title>Home Gym Tracker</title>
-
   <style>
     :root {
       --bg: #0f172a;
@@ -25,9 +24,7 @@
       --shadow: 0 12px 30px rgba(2, 8, 23, 0.16);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -86,17 +83,10 @@
       margin-bottom: 4px;
     }
 
-    .summary-card strong {
-      font-size: 18px;
-    }
+    .summary-card strong { font-size: 18px; }
 
-    .screen {
-      display: none;
-    }
-
-    .screen.active {
-      display: block;
-    }
+    .screen { display: none; }
+    .screen.active { display: block; }
 
     .panel {
       background: var(--light);
@@ -120,13 +110,8 @@
       line-height: 1.15;
     }
 
-    .section-title h2 {
-      font-size: 22px;
-    }
-
-    .section-title h3 {
-      font-size: 18px;
-    }
+    .section-title h2 { font-size: 22px; }
+    .section-title h3 { font-size: 18px; }
 
     .mini {
       font-size: 13px;
@@ -154,14 +139,8 @@
     }
 
     button:active,
-    .button:active {
-      transform: scale(0.985);
-    }
-
-    button:disabled {
-      opacity: 0.45;
-      cursor: not-allowed;
-    }
+    .button:active { transform: scale(0.985); }
+    button:disabled { opacity: 0.45; cursor: not-allowed; }
 
     .primary {
       background: var(--blue);
@@ -169,30 +148,11 @@
       box-shadow: 0 8px 18px rgba(0, 110, 219, 0.24);
     }
 
-    .danger {
-      background: var(--red);
-      color: white;
-    }
-
-    .dark {
-      background: var(--bg);
-      color: white;
-    }
-
-    .soft {
-      background: #e0f2fe;
-      color: #075985;
-    }
-
-    .green {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .amber {
-      background: #fef3c7;
-      color: #92400e;
-    }
+    .danger { background: var(--red); color: white; }
+    .dark { background: var(--bg); color: white; }
+    .soft { background: #e0f2fe; color: #075985; }
+    .green { background: #dcfce7; color: #166534; }
+    .amber { background: #fef3c7; color: #92400e; }
 
     .ghost {
       background: white;
@@ -268,25 +228,10 @@
       white-space: nowrap;
     }
 
-    .badge.blue {
-      background: #dbeafe;
-      color: #1d4ed8;
-    }
-
-    .badge.green {
-      background: #dcfce7;
-      color: #166534;
-    }
-
-    .badge.amber {
-      background: #fef3c7;
-      color: #92400e;
-    }
-
-    .badge.red {
-      background: #fee2e2;
-      color: #b91c1c;
-    }
+    .badge.blue { background: #dbeafe; color: #1d4ed8; }
+    .badge.green { background: #dcfce7; color: #166534; }
+    .badge.amber { background: #fef3c7; color: #92400e; }
+    .badge.red { background: #fee2e2; color: #b91c1c; }
 
     .exercise-meta {
       display: grid;
@@ -311,14 +256,8 @@
       margin-bottom: 3px;
     }
 
-    .meta-box strong {
-      font-size: 15px;
-    }
-
-    .meta-box small {
-      color: var(--muted);
-      font-weight: 700;
-    }
+    .meta-box strong { font-size: 15px; }
+    .meta-box small { color: var(--muted); font-weight: 700; }
 
     .form-grid {
       display: grid;
@@ -360,9 +299,7 @@
       resize: vertical;
     }
 
-    .full {
-      grid-column: 1 / -1;
-    }
+    .full { grid-column: 1 / -1; }
 
     .actions {
       display: grid;
@@ -371,13 +308,8 @@
       margin-top: 12px;
     }
 
-    .actions.three {
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .actions.single {
-      grid-template-columns: 1fr;
-    }
+    .actions.three { grid-template-columns: 1fr 1fr 1fr; }
+    .actions.single { grid-template-columns: 1fr; }
 
     .howto,
     .hidden-box {
@@ -393,18 +325,14 @@
     }
 
     .howto.open,
-    .hidden-box.open {
-      display: block;
-    }
+    .hidden-box.open { display: block; }
 
     .howto ul {
       margin: 8px 0 0 18px;
       padding: 0;
     }
 
-    .howto li {
-      margin-bottom: 5px;
-    }
+    .howto li { margin-bottom: 5px; }
 
     .toast {
       position: fixed;
@@ -431,15 +359,8 @@
       bottom: 28px;
     }
 
-    .history-card {
-      border-left: 5px solid var(--blue);
-    }
-
-    .history-card h4 {
-      margin: 0 0 5px;
-      font-size: 17px;
-    }
-
+    .history-card { border-left: 5px solid var(--blue); }
+    .history-card h4 { margin: 0 0 5px; font-size: 17px; }
     .history-card p {
       margin: 4px 0;
       color: #475569;
@@ -552,18 +473,130 @@
       border: 1px dashed var(--border);
     }
 
+    .muscle-visual {
+      display: grid;
+      grid-template-columns: 74px 1fr;
+      gap: 12px;
+      align-items: center;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 10px;
+      margin: 12px 0;
+    }
+
+    .muscle-person {
+      width: 64px;
+      min-height: 112px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #e0f2fe, #f8fafc);
+      border: 1px solid #cbd5e1;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .muscle-person::before {
+      content: '◉';
+      position: absolute;
+      top: 8px;
+      font-size: 19px;
+      color: #334155;
+    }
+
+    .muscle-person::after {
+      content: '';
+      position: absolute;
+      width: 26px;
+      height: 46px;
+      top: 31px;
+      border-radius: 14px 14px 10px 10px;
+      background: #cbd5e1;
+    }
+
+    .muscle-dot {
+      position: absolute;
+      z-index: 3;
+      background: var(--blue);
+      color: white;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 900;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 3px 8px rgba(0, 110, 219, 0.25);
+    }
+
+    .muscle-dot.primary { background: var(--red); }
+    .muscle-dot.secondary { background: var(--blue); }
+
+    .dot-chest { width: 26px; height: 15px; top: 35px; left: 19px; }
+    .dot-shoulders { width: 42px; height: 12px; top: 31px; left: 11px; }
+    .dot-back { width: 32px; height: 34px; top: 36px; left: 16px; }
+    .dot-core { width: 22px; height: 22px; top: 58px; left: 21px; }
+    .dot-arms { width: 12px; height: 37px; top: 38px; left: 7px; }
+    .dot-arms.right { left: 45px; }
+    .dot-glutes { width: 30px; height: 15px; top: 75px; left: 17px; }
+    .dot-quads { width: 13px; height: 36px; top: 85px; left: 19px; }
+    .dot-quads.right { left: 32px; }
+    .dot-hamstrings { width: 13px; height: 36px; top: 85px; left: 19px; }
+    .dot-hamstrings.right { left: 32px; }
+    .dot-calves { width: 10px; height: 25px; top: 119px; left: 21px; }
+    .dot-calves.right { left: 33px; }
+
+    .muscle-copy strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .muscle-copy p {
+      margin: 0 0 8px;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .muscle-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .muscle-chip {
+      border-radius: 999px;
+      padding: 5px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .muscle-chip.primary {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .muscle-desc {
+      background: #eef6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      padding: 10px;
+      margin-bottom: 12px;
+      color: #1e3a8a;
+    }
+
+    .muscle-desc p {
+      margin: 4px 0 0;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
     @media (min-width: 620px) {
-      .button-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .exercise-meta {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .top-summary {
-        grid-template-columns: repeat(4, 1fr);
-      }
+      .button-grid { grid-template-columns: repeat(3, 1fr); }
+      .exercise-meta { grid-template-columns: repeat(3, 1fr); }
+      .top-summary { grid-template-columns: repeat(4, 1fr); }
     }
 
     @media (max-width: 430px) {
@@ -575,7 +608,6 @@
     }
   </style>
 </head>
-
 <body>
   <div class="app">
     <header class="hero">
@@ -604,7 +636,6 @@
             <p class="mini">Kept off the main workout flow, but easy to open when needed.</p>
           </div>
         </div>
-
         <div class="button-grid">
           <button class="soft" onclick="openProgress()">Progress Check-In</button>
           <button class="ghost" onclick="openHistory()">Workout History</button>
@@ -654,9 +685,7 @@
 
         <div id="progressSummary" class="exercise-meta"></div>
 
-        <button class="primary" style="width:100%; margin-top:10px;" onclick="toggleBox('progressFormBox')">
-          Add New Check-In
-        </button>
+        <button class="primary" style="width:100%; margin-top:10px;" onclick="toggleBox('progressFormBox')">Add New Check-In</button>
 
         <div id="progressFormBox" class="hidden-box">
           <div class="form-grid">
@@ -664,23 +693,19 @@
               <label>Date</label>
               <input id="progressDate" type="date" />
             </div>
-
             <div>
               <label>Body weight</label>
               <input id="progressWeight" type="number" step="0.1" placeholder="kg" />
             </div>
-
             <div>
               <label>Body fat %</label>
               <input id="progressBodyFat" type="number" step="0.1" placeholder="%" />
             </div>
-
             <div class="full">
               <label>Notes</label>
               <textarea id="progressNotes" placeholder="Optional: energy, clothes fit, strength, sleep etc."></textarea>
             </div>
           </div>
-
           <div class="actions single">
             <button class="green" onclick="saveProgressCheckIn()">Save Check-In</button>
           </div>
@@ -703,7 +728,6 @@
             <p class="mini">Most recent entries appear first.</p>
           </div>
         </div>
-
         <div id="historyList"></div>
       </section>
     </main>
@@ -727,17 +751,14 @@
             <label>Start date</label>
             <input id="startDateInput" type="date" />
           </div>
-
           <div>
             <label>Goal</label>
             <input id="goalInput" type="text" placeholder="Get leaner while maintaining size" />
           </div>
-
           <div>
             <label>Starting weight</label>
             <input id="startWeightInput" type="number" step="0.1" placeholder="kg" />
           </div>
-
           <div>
             <label>Starting body fat %</label>
             <input id="startBodyFatInput" type="number" step="0.1" placeholder="%" />
@@ -756,12 +777,10 @@
             <p class="mini">Use this before changing phones or clearing browser data.</p>
           </div>
         </div>
-
         <div class="actions">
           <button class="green" onclick="exportData()">Export Backup</button>
           <button class="ghost" onclick="document.getElementById('importFile').click()">Import Backup</button>
         </div>
-
         <input id="importFile" class="file-input" type="file" accept="application/json,.json" style="display:none" onchange="importData(event)" />
       </section>
 
@@ -772,12 +791,10 @@
             <p class="mini">Once hosted on GitHub Pages, you can add this to your phone home screen.</p>
           </div>
         </div>
-
         <div id="installBox" class="install-note">
           On iPhone: open in Safari, tap Share, then Add to Home Screen.<br><br>
           On Android/Chrome: open the menu and choose Install app or Add to Home screen.
         </div>
-
         <div class="actions single" id="installAction" style="display:none;">
           <button class="primary" onclick="installApp()">Install App</button>
         </div>
@@ -788,14 +805,8 @@
   <div id="toast" class="toast"></div>
 
   <script>
-    const STORAGE_KEY = 'homeGymTracker_v2';
-
-    const STORAGE_MIGRATION_KEYS = [
-      'homeGymTracker_v2',
-      'homeGymTracker_v1',
-      'lukeHomeGymTracker_v2',
-      'lukeHomeGymTracker_v1'
-    ];
+    const STORAGE_KEY = 'lukeHomeGymTracker_v2';
+    const OLD_STORAGE_KEY = 'lukeHomeGymTracker_v1';
 
     const defaultState = {
       settings: {
@@ -831,11 +842,7 @@
               'Sit down between your hips and keep your knees tracking over your toes.',
               'Drive back up through your mid-foot and keep your chest controlled.'
             ],
-            avoid: [
-              'Knees collapsing in',
-              'Heels lifting',
-              'Folding forward under the bar'
-            ]
+            avoid: ['Knees collapsing in', 'Heels lifting', 'Folding forward under the bar']
           },
           {
             id: 'bench_press',
@@ -854,11 +861,7 @@
               'Lower the bar to your lower chest under control.',
               'Pause briefly, then press up with wrists stacked over elbows.'
             ],
-            avoid: [
-              'Bouncing the bar',
-              'Elbows flaring too wide',
-              'Lifting your bum off the bench'
-            ]
+            avoid: ['Bouncing the bar', 'Elbows flaring too wide', 'Lifting your bum off the bench']
           },
           {
             id: 'barbell_row',
@@ -876,11 +879,7 @@
               'Keep the bar close and pull towards your lower ribs.',
               'Squeeze your shoulder blades, then lower under control.'
             ],
-            avoid: [
-              'Jerking the bar',
-              'Turning it into a deadlift',
-              'Rounding your lower back'
-            ]
+            avoid: ['Jerking the bar', 'Turning it into a deadlift', 'Rounding your lower back']
           },
           {
             id: 'db_shoulder_press',
@@ -898,11 +897,7 @@
               'Brace your core and press overhead.',
               'Lower under control until the dumbbells return to shoulder level.'
             ],
-            avoid: [
-              'Overarching your back',
-              'Bouncing reps',
-              'Going too heavy too early'
-            ]
+            avoid: ['Overarching your back', 'Bouncing reps', 'Going too heavy too early']
           },
           {
             id: 'leg_extension',
@@ -920,11 +915,7 @@
               'Extend your legs until straight and squeeze your quads.',
               'Lower slowly rather than letting the weight drop.'
             ],
-            avoid: [
-              'Kicking the weight up',
-              'Rushing the lowering phase',
-              'Using more weight than you can control'
-            ]
+            avoid: ['Kicking the weight up', 'Rushing the lowering phase', 'Using more weight than you can control']
           },
           {
             id: 'plank',
@@ -943,15 +934,10 @@
               'Squeeze glutes and brace your stomach.',
               'Hold without letting your hips sag or rise too high.'
             ],
-            avoid: [
-              'Sagging hips',
-              'Holding your breath',
-              'Letting shoulders creep up'
-            ]
+            avoid: ['Sagging hips', 'Holding your breath', 'Letting shoulders creep up']
           }
         ]
       },
-
       B: {
         title: 'Workout B',
         subtitle: 'RDL / Shoulders / Arms',
@@ -973,11 +959,7 @@
               'Stop when you feel a strong hamstring stretch while keeping your back flat.',
               'Drive your hips forward to stand tall.'
             ],
-            avoid: [
-              'Squatting the movement',
-              'Rounding your back',
-              'Letting the bar drift away from your legs'
-            ]
+            avoid: ['Squatting the movement', 'Rounding your back', 'Letting the bar drift away from your legs']
           },
           {
             id: 'overhead_press',
@@ -996,11 +978,7 @@
               'Press straight up, move your head slightly back, then bring your head through at the top.',
               'Lower back to upper chest under control.'
             ],
-            avoid: [
-              'Leaning back too far',
-              'Pressing around your face',
-              'Turning it into a standing incline press'
-            ]
+            avoid: ['Leaning back too far', 'Pressing around your face', 'Turning it into a standing incline press']
           },
           {
             id: 'incline_db_press',
@@ -1018,11 +996,7 @@
               'Start with dumbbells near your upper chest.',
               'Press up and slightly in, then lower under control.'
             ],
-            avoid: [
-              'Flaring elbows too wide',
-              'Short reps',
-              'Letting shoulders roll forward'
-            ]
+            avoid: ['Flaring elbows too wide', 'Short reps', 'Letting shoulders roll forward']
           },
           {
             id: 'one_arm_db_row',
@@ -1040,11 +1014,7 @@
               'Pull the dumbbell towards your hip, not your shoulder.',
               'Squeeze your back and lower slowly.'
             ],
-            avoid: [
-              'Twisting your body',
-              'Shrugging the weight up',
-              'Rushing the lowering phase'
-            ]
+            avoid: ['Twisting your body', 'Shrugging the weight up', 'Rushing the lowering phase']
           },
           {
             id: 'preacher_curl',
@@ -1062,11 +1032,7 @@
               'Curl up, squeeze briefly, then lower slowly until nearly straight.',
               'Keep control through the full movement.'
             ],
-            avoid: [
-              'Half reps',
-              'Lifting elbows off the pad',
-              'Swinging'
-            ]
+            avoid: ['Half reps', 'Lifting elbows off the pad', 'Swinging']
           },
           {
             id: 'close_grip_bench',
@@ -1084,15 +1050,10 @@
               'Lower to your lower chest with elbows closer to your body.',
               'Press up smoothly and keep wrists stacked.'
             ],
-            avoid: [
-              'Going too narrow',
-              'Wrists bending back',
-              'Elbows flaring hard'
-            ]
+            avoid: ['Going too narrow', 'Wrists bending back', 'Elbows flaring hard']
           }
         ]
       },
-
       C: {
         title: 'Workout C',
         subtitle: 'Full Body / Conditioning',
@@ -1114,11 +1075,7 @@
               'Drive back up through your mid-foot.',
               'If front squats feel horrible, use a heavy goblet squat instead.'
             ],
-            avoid: [
-              'Elbows dropping',
-              'Bar rolling forward',
-              'Rushing depth'
-            ]
+            avoid: ['Elbows dropping', 'Bar rolling forward', 'Rushing depth']
           },
           {
             id: 'bench_press_light',
@@ -1136,11 +1093,7 @@
               'Control the lowering phase and press smoothly.',
               'Leave 1–2 reps in reserve.'
             ],
-            avoid: [
-              'Turning the lighter day into a max day',
-              'Bouncing the bar',
-              'Losing tightness'
-            ]
+            avoid: ['Turning the lighter day into a max day', 'Bouncing the bar', 'Losing tightness']
           },
           {
             id: 'barbell_row_light',
@@ -1158,11 +1111,7 @@
               'Pull towards your lower ribs and squeeze your back.',
               'Lower with control and keep the movement strict.'
             ],
-            avoid: [
-              'Using your hips to throw the bar',
-              'Rounding your back',
-              'Cutting the range short'
-            ]
+            avoid: ['Using your hips to throw the bar', 'Rounding your back', 'Cutting the range short']
           },
           {
             id: 'hip_thrust',
@@ -1180,11 +1129,7 @@
               'Feet planted and shins roughly vertical at the top.',
               'Drive hips up, squeeze glutes, then lower under control.'
             ],
-            avoid: [
-              'Overarching your lower back',
-              'Pushing only through toes',
-              'Rushing the top squeeze'
-            ]
+            avoid: ['Overarching your lower back', 'Pushing only through toes', 'Rushing the top squeeze']
           },
           {
             id: 'lateral_raise',
@@ -1202,11 +1147,7 @@
               'Raise arms out to the side to shoulder height with a slight bend in elbows.',
               'Lower slowly and keep tension on the shoulders.'
             ],
-            avoid: [
-              'Swinging',
-              'Shrugging',
-              'Going too heavy'
-            ]
+            avoid: ['Swinging', 'Shrugging', 'Going too heavy']
           },
           {
             id: 'hamstring_curl',
@@ -1224,15 +1165,11 @@
               'Curl your heels towards your bum and squeeze the hamstrings.',
               'Lower slowly without letting the weight drop.'
             ],
-            avoid: [
-              'Rushing reps',
-              'Dropping the weight',
-              'Lifting hips off the pad'
-            ]
+            avoid: ['Rushing reps', 'Dropping the weight', 'Lifting hips off the pad']
           },
           {
             id: 'punch_bag',
-            name: 'Punch Bag',
+            name: 'Punch Bag Conditioning',
             target: '5 x 1 min rounds',
             sets: 5,
             minReps: 60,
@@ -1243,17 +1180,146 @@
             restSeconds: 60,
             warmup: false,
             how: [
-              'Work in sharp rounds rather than sloppy all-out swinging.',
-              'Keep hands up, move your feet, and breathe.',
-              'Rest around one minute between rounds.'
+              'Use this as a short conditioning finisher, not a full boxing session.',
+              'Stand slightly sideways to the bag with your hands up near your chin.',
+              'If you are right-handed, usually keep your left foot forward and right foot back.',
+              'Front hand means the hand nearest the bag. This is usually your jab hand.',
+              'Back hand means your rear hand, not a backhand slap. This is usually your cross hand.',
+              'Round 1: easy warm-up round. Move around the bag and throw light jabs and jab-crosses at about 50% effort.',
+              'Round 2: jab and cross. Throw jab-cross, move your feet, reset, then repeat.',
+              'Round 3: simple combo. Throw jab-cross-hook, then step back and reset.',
+              'Round 4: body and head. Throw jab high, cross high, hook to body, then move away.',
+              'Round 5: conditioning round. Keep moving for the full minute with steady punches, foot movement, and a slightly stronger finish.',
+              'Rest for around one minute between rounds.',
+              'Keep your wrists straight and start controlled rather than trying to smash the bag.'
             ],
             avoid: [
               'Wild punches',
+              'Backhand slapping the bag',
               'Dropping your guard',
+              'Punching with bent wrists',
+              'Standing still and windmilling',
               'Going so hard your form falls apart'
             ]
           }
         ]
+      }
+    };
+
+    const muscleInfo = {
+      back_squat: {
+        primary: ['Quads', 'Glutes'],
+        secondary: ['Hamstrings', 'Core', 'Lower back'],
+        dots: ['quads', 'glutes', 'core'],
+        description: 'Mainly works your quads and glutes, with hamstrings, core and lower back helping you stay stable and drive the weight up.'
+      },
+      bench_press: {
+        primary: ['Chest', 'Triceps'],
+        secondary: ['Front shoulders', 'Upper back'],
+        dots: ['chest', 'arms', 'shoulders'],
+        description: 'Mainly works your chest and triceps, with your front shoulders helping press and your upper back keeping you stable on the bench.'
+      },
+      barbell_row: {
+        primary: ['Upper back', 'Lats'],
+        secondary: ['Rear shoulders', 'Biceps', 'Core'],
+        dots: ['back', 'arms', 'core'],
+        description: 'Mainly works your upper back and lats, with biceps, rear shoulders and core helping control the pull.'
+      },
+      db_shoulder_press: {
+        primary: ['Shoulders'],
+        secondary: ['Triceps', 'Upper chest', 'Core'],
+        dots: ['shoulders', 'arms', 'core'],
+        description: 'Mainly works your shoulders, especially the front and side delts, with triceps and core helping you press overhead.'
+      },
+      leg_extension: {
+        primary: ['Quads'],
+        secondary: ['Hip flexors'],
+        dots: ['quads'],
+        description: 'Mainly isolates your quads at the front of your thighs. Keep it controlled and avoid kicking the weight up.'
+      },
+      plank: {
+        primary: ['Core'],
+        secondary: ['Glutes', 'Shoulders'],
+        dots: ['core', 'glutes', 'shoulders'],
+        description: 'Mainly works your core by resisting movement, with glutes and shoulders helping keep your body locked in position.'
+      },
+      romanian_deadlift: {
+        primary: ['Hamstrings', 'Glutes'],
+        secondary: ['Lower back', 'Core', 'Upper back'],
+        dots: ['hamstrings', 'glutes', 'back', 'core'],
+        description: 'Mainly works your hamstrings and glutes, with your lower back, core and upper back supporting the hinge position.'
+      },
+      overhead_press: {
+        primary: ['Shoulders'],
+        secondary: ['Triceps', 'Upper chest', 'Core'],
+        dots: ['shoulders', 'arms', 'core'],
+        description: 'Mainly works your shoulders and triceps, with your core bracing hard to stop you leaning back too much.'
+      },
+      incline_db_press: {
+        primary: ['Upper chest', 'Shoulders'],
+        secondary: ['Triceps'],
+        dots: ['chest', 'shoulders', 'arms'],
+        description: 'Mainly works your upper chest and front shoulders, with triceps helping finish the press.'
+      },
+      one_arm_db_row: {
+        primary: ['Lats', 'Upper back'],
+        secondary: ['Biceps', 'Rear shoulders', 'Core'],
+        dots: ['back', 'arms', 'core'],
+        description: 'Mainly works your lats and upper back, with biceps, rear shoulders and core helping control the movement.'
+      },
+      preacher_curl: {
+        primary: ['Biceps'],
+        secondary: ['Forearms'],
+        dots: ['arms'],
+        description: 'Mainly isolates your biceps, with forearms helping grip and control the weight.'
+      },
+      close_grip_bench: {
+        primary: ['Triceps'],
+        secondary: ['Chest', 'Front shoulders'],
+        dots: ['arms', 'chest', 'shoulders'],
+        description: 'Mainly targets your triceps, with chest and front shoulders still contributing to the press.'
+      },
+      front_squat: {
+        primary: ['Quads', 'Core'],
+        secondary: ['Glutes', 'Upper back'],
+        dots: ['quads', 'core', 'glutes', 'back'],
+        description: 'Mainly works your quads and core, with glutes and upper back helping keep you upright.'
+      },
+      bench_press_light: {
+        primary: ['Chest', 'Triceps'],
+        secondary: ['Front shoulders', 'Upper back'],
+        dots: ['chest', 'arms', 'shoulders'],
+        description: 'Mainly works your chest and triceps, with lighter loading to practise clean pressing and build volume.'
+      },
+      barbell_row_light: {
+        primary: ['Upper back', 'Lats'],
+        secondary: ['Rear shoulders', 'Biceps', 'Core'],
+        dots: ['back', 'arms', 'core'],
+        description: 'Mainly works your upper back and lats with a slightly lighter, stricter rowing focus.'
+      },
+      hip_thrust: {
+        primary: ['Glutes'],
+        secondary: ['Hamstrings', 'Core'],
+        dots: ['glutes', 'hamstrings', 'core'],
+        description: 'Mainly works your glutes, with hamstrings and core helping control the movement and protect your back.'
+      },
+      lateral_raise: {
+        primary: ['Side shoulders'],
+        secondary: ['Upper traps'],
+        dots: ['shoulders'],
+        description: 'Mainly works the side of your shoulders, helping build width and shoulder shape.'
+      },
+      hamstring_curl: {
+        primary: ['Hamstrings'],
+        secondary: ['Calves'],
+        dots: ['hamstrings', 'calves'],
+        description: 'Mainly isolates your hamstrings at the back of your thighs, with calves assisting slightly.'
+      },
+      punch_bag: {
+        primary: ['Shoulders', 'Core'],
+        secondary: ['Chest', 'Arms', 'Legs'],
+        dots: ['shoulders', 'core', 'chest', 'arms', 'quads', 'calves'],
+        description: 'Mainly a conditioning finisher. It works shoulders, core, chest and arms while your legs keep you moving around the bag.'
       }
     };
 
@@ -1267,33 +1333,21 @@
 
     function loadState() {
       try {
-        let saved = null;
-
-        for (const key of STORAGE_MIGRATION_KEYS) {
-          const value = localStorage.getItem(key);
-          if (value) {
-            saved = value;
-            break;
-          }
-        }
-
+        let saved = localStorage.getItem(STORAGE_KEY);
         if (!saved) {
-          return structuredClone(defaultState);
+          const oldSaved = localStorage.getItem(OLD_STORAGE_KEY);
+          if (oldSaved) saved = oldSaved;
         }
-
+        if (!saved) return structuredClone(defaultState);
         const parsed = JSON.parse(saved);
-
         return {
           ...structuredClone(defaultState),
           ...parsed,
-          settings: {
-            ...defaultState.settings,
-            ...(parsed.settings || {})
-          },
+          settings: { ...defaultState.settings, ...(parsed.settings || {}) },
           logs: parsed.logs || [],
           progress: parsed.progress || []
         };
-      } catch (error) {
+      } catch (e) {
         return structuredClone(defaultState);
       }
     }
@@ -1311,7 +1365,6 @@
 
     function formatDate(iso) {
       if (!iso) return 'Not set';
-
       const [y, m, d] = iso.split('-');
       return `${d}/${m}/${y.slice(2)}`;
     }
@@ -1319,22 +1372,14 @@
     function getCurrentWeek() {
       const start = new Date(state.settings.startDate + 'T00:00:00');
       const now = new Date();
-
-      if (Number.isNaN(start.getTime())) {
-        return 1;
-      }
-
+      if (Number.isNaN(start.getTime())) return 1;
       const diff = now - start;
       const week = Math.floor(diff / (1000 * 60 * 60 * 24 * 7)) + 1;
-
       return Math.max(1, week);
     }
 
     function showScreen(id) {
-      document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-      });
-
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
       document.getElementById(id).classList.add('active');
       window.scrollTo({ top: 0, behavior: 'smooth' });
       renderTopSummary();
@@ -1350,41 +1395,20 @@
       const latest = getLatestProgress();
       const startWeight = state.settings.startWeight ? `${state.settings.startWeight}kg` : 'Not set';
       const latestWeight = latest && latest.weight ? `${latest.weight}kg` : startWeight;
-      const bodyFat = latest && latest.bodyFat
-        ? `${latest.bodyFat}%`
-        : state.settings.startBodyFat
-          ? `${state.settings.startBodyFat}%`
-          : 'Not set';
+      const bodyFat = latest && latest.bodyFat ? `${latest.bodyFat}%` : (state.settings.startBodyFat ? `${state.settings.startBodyFat}%` : 'Not set');
 
       document.getElementById('topSummary').innerHTML = `
-        <div class="summary-card">
-          <span>Week</span>
-          <strong>${getCurrentWeek()}</strong>
-        </div>
-
-        <div class="summary-card">
-          <span>Start</span>
-          <strong>${formatDate(state.settings.startDate)}</strong>
-        </div>
-
-        <div class="summary-card">
-          <span>Weight</span>
-          <strong>${latestWeight}</strong>
-        </div>
-
-        <div class="summary-card">
-          <span>Body Fat</span>
-          <strong>${bodyFat}</strong>
-        </div>
+        <div class="summary-card"><span>Week</span><strong>${getCurrentWeek()}</strong></div>
+        <div class="summary-card"><span>Start</span><strong>${formatDate(state.settings.startDate)}</strong></div>
+        <div class="summary-card"><span>Weight</span><strong>${latestWeight}</strong></div>
+        <div class="summary-card"><span>Body Fat</span><strong>${bodyFat}</strong></div>
       `;
     }
 
     function renderHomeButtons() {
       const container = document.getElementById('homeWorkoutButtons');
-
       container.innerHTML = Object.keys(workouts).map(key => {
         const completion = getWorkoutCompletion(key);
-
         const line = completion.completed === completion.total
           ? `✅ Complete today · ${completion.completed}/${completion.total}`
           : `${completion.completed}/${completion.total} completed today`;
@@ -1404,11 +1428,9 @@
       guidedMode = false;
       guidedIndex = 0;
       stopTimer();
-
       document.getElementById('workoutTitle').textContent = workouts[key].title;
       document.getElementById('workoutSub').textContent = workouts[key].subtitle;
       document.getElementById('guidedToggleBtn').textContent = 'Start Workout Mode';
-
       renderWorkout(key);
       showScreen('workoutScreen');
     }
@@ -1416,34 +1438,23 @@
     function renderWorkout(key) {
       const container = document.getElementById('exerciseList');
       const workout = workouts[key];
-
       renderWorkoutProgress(key);
       renderSessionSummary(key);
 
       let exercisesToRender = workout.exercises;
-
-      if (guidedMode) {
-        exercisesToRender = [workout.exercises[guidedIndex]];
-      }
+      if (guidedMode) exercisesToRender = [workout.exercises[guidedIndex]];
 
       container.innerHTML = exercisesToRender.map(ex => renderExerciseCard(key, ex)).join('');
 
       if (guidedMode) {
         const footer = document.createElement('div');
         footer.className = 'guided-footer';
-
         footer.innerHTML = `
           <div class="actions">
-            <button class="ghost" onclick="previousGuidedExercise()" ${guidedIndex === 0 ? 'disabled' : ''}>
-              ← Previous
-            </button>
-
-            <button class="primary" onclick="nextGuidedExercise()">
-              ${guidedIndex === workout.exercises.length - 1 ? 'Finish' : 'Next →'}
-            </button>
+            <button class="ghost" onclick="previousGuidedExercise()" ${guidedIndex === 0 ? 'disabled' : ''}>← Previous</button>
+            <button class="primary" onclick="nextGuidedExercise()">${guidedIndex === workout.exercises.length - 1 ? 'Finish' : 'Next →'}</button>
           </div>
         `;
-
         container.appendChild(footer);
       }
     }
@@ -1451,62 +1462,41 @@
     function renderWorkoutProgress(key) {
       const completion = getWorkoutCompletion(key);
       const percent = completion.total ? Math.round((completion.completed / completion.total) * 100) : 0;
-
       document.getElementById('workoutProgressStrip').innerHTML = `
         <strong>${completion.completed}/${completion.total} exercises saved today</strong>
-
-        <p class="mini">
-          ${completion.completed === completion.total
-            ? 'Workout complete. Lovely work.'
-            : 'Save each exercise and it will tick off for today.'}
-        </p>
-
-        <div class="progress-bar">
-          <div class="progress-fill" style="width:${percent}%"></div>
-        </div>
+        <p class="mini">${completion.completed === completion.total ? 'Workout complete. Lovely work.' : 'Save each exercise and it will tick off for today.'}</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:${percent}%"></div></div>
       `;
     }
 
     function getWorkoutCompletion(key) {
+      const today = todayISO();
       const exercises = workouts[key].exercises;
       const completed = exercises.filter(ex => getTodayExerciseLog(ex.id)).length;
-
-      return {
-        completed,
-        total: exercises.length
-      };
+      return { completed, total: exercises.length };
     }
 
     function renderExerciseCard(workoutKey, ex) {
       const previousLog = getPreviousExerciseLog(ex.id);
       const todayLog = getTodayExerciseLog(ex.id);
       const suggested = getSuggestedWeight(ex, previousLog);
-
       const previousText = previousLog
         ? `${formatDate(previousLog.date)} · Week ${previousLog.week}<br>${previousLog.weight}${previousLog.unit === 'kg' ? 'kg' : previousLog.unit === 'sec' ? ' sec' : ''} — ${previousLog.reps.join(' / ')}`
         : 'No previous session yet';
-
       const todayText = todayLog
         ? `${todayLog.weight}${todayLog.unit === 'kg' ? 'kg' : todayLog.unit === 'sec' ? ' sec' : ''} — ${todayLog.reps.join(' / ')}`
         : 'Not saved yet';
-
       const nextAim = todayLog
         ? `Saved today. Next time: ${todayLog.advice}`
         : previousLog
           ? getAdvice(ex, previousLog)
           : `Start with ${formatWeight(suggested, ex)} and keep it clean.`;
-
       const savedClass = todayLog ? 'saved-today' : '';
-
-      const completedBadge = todayLog
-        ? '<span class="badge green">✅ Saved today</span>'
-        : `<span class="badge blue">${formatWeight(suggested, ex)}</span>`;
-
+      const completedBadge = todayLog ? '<span class="badge green">✅ Saved today</span>' : `<span class="badge blue">${formatWeight(suggested, ex)}</span>`;
       const warmupHtml = ex.warmup ? renderWarmupBox(ex, suggested) : '';
 
       const repsInputs = Array.from({ length: ex.sets }, (_, i) => {
         const existing = todayLog ? todayLog.reps[i] : '';
-
         return `
           <div>
             <label>Set ${i + 1} ${ex.unit === 'sec' ? 'seconds' : 'reps'}</label>
@@ -1525,30 +1515,16 @@
               <h3>${ex.name}</h3>
               <p class="mini">Target: ${ex.target}</p>
             </div>
-
             ${completedBadge}
           </div>
 
+          ${renderMuscleVisual(ex)}
+
           <div class="exercise-meta">
-            <div class="meta-box">
-              <span>Previous session</span>
-              <strong>${previousText}</strong>
-            </div>
-
-            <div class="meta-box">
-              <span>Today</span>
-              <strong>${todayText}</strong>
-            </div>
-
-            <div class="meta-box">
-              <span>Suggested today</span>
-              <strong>${formatWeight(suggested, ex)}</strong>
-            </div>
-
-            <div class="meta-box full">
-              <span>Next aim</span>
-              <strong>${nextAim}</strong>
-            </div>
+            <div class="meta-box"><span>Previous session</span><strong>${previousText}</strong></div>
+            <div class="meta-box"><span>Today</span><strong>${todayText}</strong></div>
+            <div class="meta-box"><span>Suggested today</span><strong>${formatWeight(suggested, ex)}</strong></div>
+            <div class="meta-box full"><span>Next aim</span><strong>${nextAim}</strong></div>
           </div>
 
           <div class="form-grid">
@@ -1556,7 +1532,6 @@
               <label>${ex.unit === 'sec' ? 'Round length / time' : 'Weight used'}</label>
               <input id="${ex.id}_weight" type="text" inputmode="decimal" value="${weightValue}" placeholder="${ex.unit === 'sec' ? 'Bodyweight / seconds' : 'kg'}" />
             </div>
-
             ${repsInputs}
           </div>
 
@@ -1567,11 +1542,10 @@
           </div>
 
           <div id="how_${ex.id}" class="howto">
+            ${renderMuscleDescription(ex)}
             <strong>${ex.name} — How to perform</strong>
             <ul>${ex.how.map(item => `<li>${item}</li>`).join('')}</ul>
-
             <div class="divider"></div>
-
             <strong>Avoid</strong>
             <ul>${ex.avoid.map(item => `<li>${item}</li>`).join('')}</ul>
           </div>
@@ -1584,19 +1558,62 @@
       `;
     }
 
+    function renderMuscleVisual(ex) {
+      const info = muscleInfo[ex.id];
+      if (!info) return '';
+
+      const dots = info.dots.map(dot => {
+        if (dot === 'arms') {
+          return '<span class="muscle-dot secondary dot-arms"></span><span class="muscle-dot secondary dot-arms right"></span>';
+        }
+        if (dot === 'quads') {
+          return '<span class="muscle-dot primary dot-quads"></span><span class="muscle-dot primary dot-quads right"></span>';
+        }
+        if (dot === 'hamstrings') {
+          return '<span class="muscle-dot primary dot-hamstrings"></span><span class="muscle-dot primary dot-hamstrings right"></span>';
+        }
+        if (dot === 'calves') {
+          return '<span class="muscle-dot secondary dot-calves"></span><span class="muscle-dot secondary dot-calves right"></span>';
+        }
+        return `<span class="muscle-dot primary dot-${dot}"></span>`;
+      }).join('');
+
+      const primary = info.primary.map(muscle => `<span class="muscle-chip primary">${muscle}</span>`).join('');
+      const secondary = info.secondary.map(muscle => `<span class="muscle-chip">${muscle}</span>`).join('');
+
+      return `
+        <div class="muscle-visual">
+          <div class="muscle-person" aria-label="Muscle visual">${dots}</div>
+          <div class="muscle-copy">
+            <strong>Muscles worked</strong>
+            <p>${info.description}</p>
+            <div class="muscle-chips">${primary}${secondary}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMuscleDescription(ex) {
+      const info = muscleInfo[ex.id];
+      if (!info) return '';
+
+      return `
+        <div class="muscle-desc">
+          <strong>Muscles worked</strong>
+          <p><strong>Primary:</strong> ${info.primary.join(', ')}</p>
+          <p><strong>Secondary:</strong> ${info.secondary.join(', ')}</p>
+          <p>${info.description}</p>
+        </div>
+      `;
+    }
+
     function renderWarmupBox(ex, suggested) {
       const numeric = parseFloat(suggested);
-
       if (Number.isNaN(numeric) || numeric <= 0 || ex.unit === 'sec') {
-        return `
-          <strong>Warm-up</strong>
-          <p class="mini">Use a lighter warm-up set before your working sets.</p>
-          <div class="divider"></div>
-        `;
+        return '<strong>Warm-up</strong><p class="mini">Use a lighter warm-up set before your working sets.</p><div class="divider"></div>';
       }
 
       const warmups = buildWarmupSets(numeric);
-
       return `
         <strong>Suggested warm-up</strong>
         <ul>${warmups.map(w => `<li>${w}</li>`).join('')}</ul>
@@ -1606,23 +1623,11 @@
 
     function buildWarmupSets(weight) {
       const sets = [];
-
       sets.push('Empty bar x 8–10');
-
-      if (weight >= 40) {
-        sets.push(`${roundTo2Point5(weight * 0.45)}kg x 5`);
-      }
-
-      if (weight >= 60) {
-        sets.push(`${roundTo2Point5(weight * 0.65)}kg x 3`);
-      }
-
-      if (weight >= 80) {
-        sets.push(`${roundTo2Point5(weight * 0.82)}kg x 2`);
-      }
-
+      if (weight >= 40) sets.push(`${roundTo2Point5(weight * 0.45)}kg x 5`);
+      if (weight >= 60) sets.push(`${roundTo2Point5(weight * 0.65)}kg x 3`);
+      if (weight >= 80) sets.push(`${roundTo2Point5(weight * 0.82)}kg x 2`);
       sets.push(`Then ${weight}kg working sets`);
-
       return sets;
     }
 
@@ -1633,48 +1638,26 @@
     function renderTimerBox(ex) {
       return `
         <strong>Rest timer</strong>
-
         <div class="timer-box" id="timer_box_${ex.id}">
           <div class="timer-time" id="timer_${ex.id}">${formatTimer(ex.restSeconds)}</div>
-
           <div class="actions three">
-            <button class="ghost" onclick="startTimer('${ex.id}', ${ex.restSeconds})">
-              ${Math.round(ex.restSeconds / 60)} min
-            </button>
-
-            <button class="ghost" onclick="startTimer('${ex.id}', 90)">
-              90 sec
-            </button>
-
-            <button class="danger" onclick="stopTimer()">
-              Stop
-            </button>
+            <button class="ghost" onclick="startTimer('${ex.id}', ${ex.restSeconds})">${Math.round(ex.restSeconds / 60)} min</button>
+            <button class="ghost" onclick="startTimer('${ex.id}', 90)">90 sec</button>
+            <button class="danger" onclick="stopTimer()">Stop</button>
           </div>
         </div>
       `;
     }
 
     function inputWeightValue(suggested, ex) {
-      if (suggested === '' || suggested === null || suggested === undefined) {
-        return '';
-      }
-
-      if (suggested === 'BW') {
-        return 'BW';
-      }
-
+      if (suggested === '' || suggested === null || suggested === undefined) return '';
+      if (suggested === 'BW') return 'BW';
       return suggested;
     }
 
     function formatWeight(value, ex) {
-      if (value === '' || value === null || value === undefined) {
-        return 'Set today';
-      }
-
-      if (value === 'BW') {
-        return ex.unit === 'sec' ? 'Bodyweight' : 'BW';
-      }
-
+      if (value === '' || value === null || value === undefined) return 'Set today';
+      if (value === 'BW') return ex.unit === 'sec' ? 'Bodyweight' : 'BW';
       return ex.unit === 'sec' ? `${value} sec` : `${value}kg`;
     }
 
@@ -1686,7 +1669,6 @@
 
     function getTodayExerciseLog(exerciseId) {
       const today = todayISO();
-
       return state.logs
         .filter(log => log.exerciseId === exerciseId && log.date === today)
         .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
@@ -1694,27 +1676,18 @@
 
     function getPreviousExerciseLog(exerciseId) {
       const today = todayISO();
-
       return state.logs
         .filter(log => log.exerciseId === exerciseId && log.date !== today)
         .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt))[0] || null;
     }
 
     function getSuggestedWeight(ex, last) {
-      if (!last) {
-        return ex.startWeight;
-      }
-
+      if (!last) return ex.startWeight;
       const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
-
       if (allHitTop && !['', 'BW', null, undefined].includes(last.weight)) {
         const numeric = parseFloat(last.weight);
-
-        if (!Number.isNaN(numeric)) {
-          return Number((numeric + ex.increment).toFixed(1));
-        }
+        if (!Number.isNaN(numeric)) return Number((numeric + ex.increment).toFixed(1));
       }
-
       return last.weight;
     }
 
@@ -1722,24 +1695,22 @@
       const allHitTop = last.reps.length === ex.sets && last.reps.every(rep => Number(rep) >= ex.maxReps);
       const total = last.reps.reduce((sum, r) => sum + Number(r || 0), 0);
       const nextTotal = total + 1;
+      const maxTotal = ex.maxReps * ex.sets;
       const unit = ex.unit === 'sec' ? 'seconds' : 'reps';
 
       if (allHitTop && !['', 'BW', null, undefined].includes(last.weight)) {
         const nextWeight = Number((parseFloat(last.weight) + ex.increment).toFixed(1));
         return `Increase to ${nextWeight}${ex.unit === 'sec' ? ' sec' : 'kg'} next time.`;
       }
-
       if (allHitTop) {
         return 'Increase the challenge next time.';
       }
-
       return `Stay at ${last.weight}${ex.unit === 'kg' ? 'kg' : ex.unit === 'sec' ? ' sec' : ''}. Aim for ${nextTotal}+ total ${unit} next time.`;
     }
 
     function saveExercise(workoutKey, exerciseId) {
       const ex = workouts[workoutKey].exercises.find(item => item.id === exerciseId);
       const weightRaw = document.getElementById(`${exerciseId}_weight`).value.trim();
-
       const reps = Array.from({ length: ex.sets }, (_, i) => {
         const value = document.getElementById(`${exerciseId}_set_${i}`).value;
         return value === '' ? null : Number(value);
@@ -1756,7 +1727,6 @@
       }
 
       const existingToday = getTodayExerciseLog(exerciseId);
-
       const log = {
         id: existingToday ? existingToday.id : makeId(),
         savedAt: new Date().toISOString(),
@@ -1769,11 +1739,7 @@
         weight: weightRaw,
         reps,
         unit: ex.unit || 'kg',
-        advice: getAdvice(ex, {
-          weight: weightRaw,
-          reps,
-          unit: ex.unit || 'kg'
-        })
+        advice: getAdvice(ex, { weight: weightRaw, reps, unit: ex.unit || 'kg' })
       };
 
       if (existingToday) {
@@ -1789,19 +1755,13 @@
       if (guidedMode) {
         setTimeout(() => {
           const completion = getWorkoutCompletion(workoutKey);
-
-          if (completion.completed === completion.total) {
-            renderSessionSummary(workoutKey);
-          }
+          if (completion.completed === completion.total) renderSessionSummary(workoutKey);
         }, 50);
       }
     }
 
     function makeId() {
-      if (window.crypto && crypto.randomUUID) {
-        return crypto.randomUUID();
-      }
-
+      if (window.crypto && crypto.randomUUID) return crypto.randomUUID();
       return String(Date.now()) + '_' + Math.random().toString(16).slice(2);
     }
 
@@ -1820,24 +1780,18 @@
     function startGuidedWorkout() {
       guidedMode = !guidedMode;
       guidedIndex = getFirstIncompleteIndex(currentWorkout);
-
-      document.getElementById('guidedToggleBtn').textContent = guidedMode
-        ? 'Exit Workout Mode'
-        : 'Start Workout Mode';
-
+      document.getElementById('guidedToggleBtn').textContent = guidedMode ? 'Exit Workout Mode' : 'Start Workout Mode';
       renderWorkout(currentWorkout);
     }
 
     function getFirstIncompleteIndex(key) {
       const exercises = workouts[key].exercises;
       const index = exercises.findIndex(ex => !getTodayExerciseLog(ex.id));
-
       return index === -1 ? 0 : index;
     }
 
     function nextGuidedExercise() {
       const workout = workouts[currentWorkout];
-
       if (guidedIndex < workout.exercises.length - 1) {
         guidedIndex++;
         stopTimer();
@@ -1863,14 +1817,9 @@
 
     function renderSessionSummary(key) {
       const box = document.getElementById('sessionSummary');
-
-      if (!box) {
-        return;
-      }
-
+      if (!box) return;
       const completion = getWorkoutCompletion(key);
       const today = todayISO();
-
       const logs = workouts[key].exercises
         .map(ex => getTodayExerciseLog(ex.id))
         .filter(Boolean);
@@ -1891,44 +1840,25 @@
               <h3>${workouts[key].title} Complete</h3>
               <p class="mini">${formatDate(today)} · Week ${getCurrentWeek()}</p>
             </div>
-
             <span class="badge green">Done</span>
           </div>
-
           <div class="exercise-meta">
-            <div class="meta-box">
-              <span>Exercises</span>
-              <strong>${completion.completed}/${completion.total}</strong>
-            </div>
-
-            <div class="meta-box">
-              <span>Working sets</span>
-              <strong>${totalSets}</strong>
-            </div>
-
-            <div class="meta-box">
-              <span>Main lift</span>
-              <strong>${mainLift ? `${mainLift.exerciseName}: ${mainLift.weight}${mainLift.unit === 'kg' ? 'kg' : ''}` : 'Saved'}</strong>
-            </div>
+            <div class="meta-box"><span>Exercises</span><strong>${completion.completed}/${completion.total}</strong></div>
+            <div class="meta-box"><span>Working sets</span><strong>${totalSets}</strong></div>
+            <div class="meta-box"><span>Main lift</span><strong>${mainLift ? `${mainLift.exerciseName}: ${mainLift.weight}${mainLift.unit === 'kg' ? 'kg' : ''}` : 'Saved'}</strong></div>
           </div>
-
-          <p class="mini">
-            <strong>Next main target:</strong> ${nextMain}
-          </p>
+          <p class="mini"><strong>Next main target:</strong> ${nextMain}</p>
         </div>
       `;
     }
 
     function startTimer(id, seconds) {
       stopTimer();
-
       timerRemaining = seconds;
       updateTimerDisplay(id);
-
       timerInterval = setInterval(() => {
         timerRemaining--;
         updateTimerDisplay(id);
-
         if (timerRemaining <= 0) {
           stopTimer(false);
           showToast('Rest done. Go again.');
@@ -1937,33 +1867,30 @@
       }, 1000);
     }
 
-    function stopTimer() {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-      }
-
+    function stopTimer(clearDisplays = true) {
+      if (timerInterval) clearInterval(timerInterval);
       timerInterval = null;
+      if (clearDisplays) {
+        document.querySelectorAll('[id^="timer_"]').forEach(el => {
+          const card = el.closest('.howto');
+          if (!card) return;
+        });
+      }
     }
 
     function updateTimerDisplay(id) {
       const el = document.getElementById(`timer_${id}`);
-
-      if (el) {
-        el.textContent = formatTimer(timerRemaining);
-      }
+      if (el) el.textContent = formatTimer(timerRemaining);
     }
 
     function formatTimer(seconds) {
       const mins = Math.floor(seconds / 60);
       const secs = seconds % 60;
-
       return `${mins}:${String(secs).padStart(2, '0')}`;
     }
 
     function vibratePhone() {
-      if (navigator.vibrate) {
-        navigator.vibrate([200, 100, 200]);
-      }
+      if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
     }
 
     function openProgress() {
@@ -1975,7 +1902,6 @@
 
     function renderProgressSummary() {
       const latest = getLatestProgress();
-
       const startWeight = state.settings.startWeight ? `${state.settings.startWeight}kg` : 'Not set';
       const startBodyFat = state.settings.startBodyFat ? `${state.settings.startBodyFat}%` : 'Not set';
       const latestWeight = latest && latest.weight ? `${latest.weight}kg` : 'No check-in yet';
@@ -1995,39 +1921,12 @@
       }
 
       document.getElementById('progressSummary').innerHTML = `
-        <div class="meta-box">
-          <span>Starting weight</span>
-          <strong>${startWeight}</strong>
-        </div>
-
-        <div class="meta-box">
-          <span>Latest weight</span>
-          <strong>${latestWeight}</strong>
-          <br>
-          <small>${weightChange}</small>
-        </div>
-
-        <div class="meta-box">
-          <span>Body fat</span>
-          <strong>${latestBodyFat}</strong>
-          <br>
-          <small>${fatChange}</small>
-        </div>
-
-        <div class="meta-box">
-          <span>Starting body fat</span>
-          <strong>${startBodyFat}</strong>
-        </div>
-
-        <div class="meta-box">
-          <span>Last check-in</span>
-          <strong>${latest ? formatDate(latest.date) : 'None yet'}</strong>
-        </div>
-
-        <div class="meta-box">
-          <span>Goal</span>
-          <strong>${state.settings.goal || 'Not set'}</strong>
-        </div>
+        <div class="meta-box"><span>Starting weight</span><strong>${startWeight}</strong></div>
+        <div class="meta-box"><span>Latest weight</span><strong>${latestWeight}</strong><br><small>${weightChange}</small></div>
+        <div class="meta-box"><span>Body fat</span><strong>${latestBodyFat}</strong><br><small>${fatChange}</small></div>
+        <div class="meta-box"><span>Starting body fat</span><strong>${startBodyFat}</strong></div>
+        <div class="meta-box"><span>Last check-in</span><strong>${latest ? formatDate(latest.date) : 'None yet'}</strong></div>
+        <div class="meta-box"><span>Goal</span><strong>${state.settings.goal || 'Not set'}</strong></div>
       `;
     }
 
@@ -2052,11 +1951,9 @@
       });
 
       saveState();
-
       document.getElementById('progressWeight').value = '';
       document.getElementById('progressBodyFat').value = '';
       document.getElementById('progressNotes').value = '';
-
       renderProgressSummary();
       renderProgressHistory(false);
       showToast('Progress check-in saved.');
@@ -2070,11 +1967,7 @@
 
     function renderProgressHistory(openBox) {
       const box = document.getElementById('progressHistoryBox');
-
-      if (openBox) {
-        box.classList.toggle('open');
-      }
-
+      if (openBox) box.classList.toggle('open');
       const items = state.progress
         .slice()
         .sort((a, b) => new Date(b.date) - new Date(a.date) || new Date(b.savedAt) - new Date(a.savedAt));
@@ -2087,29 +1980,16 @@
       box.innerHTML = items.map(item => `
         <div class="card history-card">
           <h4>${formatDate(item.date)}</h4>
-
-          <p>
-            <strong>Weight:</strong> ${item.weight ? `${item.weight}kg` : 'Not entered'}
-          </p>
-
-          <p>
-            <strong>Body Fat:</strong> ${item.bodyFat ? `${item.bodyFat}%` : 'Not entered'}
-          </p>
-
+          <p><strong>Weight:</strong> ${item.weight ? `${item.weight}kg` : 'Not entered'}</p>
+          <p><strong>Body Fat:</strong> ${item.bodyFat ? `${item.bodyFat}%` : 'Not entered'}</p>
           ${item.notes ? `<p><strong>Notes:</strong> ${escapeHtml(item.notes)}</p>` : ''}
-
-          <div class="pill-row">
-            <button class="small-btn danger" onclick="deleteProgress('${item.id}')">
-              Delete
-            </button>
-          </div>
+          <div class="pill-row"><button class="small-btn danger" onclick="deleteProgress('${item.id}')">Delete</button></div>
         </div>
       `).join('');
     }
 
     function deleteProgress(id) {
       state.progress = state.progress.filter(item => item.id !== id);
-
       saveState();
       renderProgressSummary();
       renderProgressHistory(false);
@@ -2123,10 +2003,7 @@
 
     function renderHistory() {
       const list = document.getElementById('historyList');
-
-      const items = state.logs
-        .slice()
-        .sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
+      const items = state.logs.slice().sort((a, b) => new Date(b.savedAt) - new Date(a.savedAt));
 
       if (!items.length) {
         list.innerHTML = '<div class="empty">No workout logs yet. Save your first exercise and it will appear here.</div>';
@@ -2136,25 +2013,12 @@
       list.innerHTML = items.map(log => `
         <div class="card history-card">
           <h4>${log.exerciseName}</h4>
-
-          <p>
-            <strong>${formatDate(log.date)} · Week ${log.week} · Workout ${log.workout}</strong>
-          </p>
-
-          <p>
-            ${log.weight}${log.unit === 'kg' ? 'kg' : log.unit === 'sec' ? ' sec' : ''} — ${log.reps.join(' / ')}
-          </p>
-
+          <p><strong>${formatDate(log.date)} · Week ${log.week} · Workout ${log.workout}</strong></p>
+          <p>${log.weight}${log.unit === 'kg' ? 'kg' : log.unit === 'sec' ? ' sec' : ''} — ${log.reps.join(' / ')}</p>
           <p>${log.advice}</p>
-
           <div class="pill-row">
-            <button class="small-btn soft" onclick="editFromHistory('${log.workout}', '${log.exerciseId}', '${log.date}')">
-              Edit
-            </button>
-
-            <button class="small-btn danger" onclick="deleteLog('${log.id}')">
-              Delete
-            </button>
+            <button class="small-btn soft" onclick="editFromHistory('${log.workout}', '${log.exerciseId}', '${log.date}')">Edit</button>
+            <button class="small-btn danger" onclick="deleteLog('${log.id}')">Delete</button>
           </div>
         </div>
       `).join('');
@@ -2165,24 +2029,15 @@
         showToast('Only today’s entries can be edited on the workout screen.');
         return;
       }
-
       openWorkout(workoutKey);
-
       setTimeout(() => {
         const card = document.getElementById(`card_${exerciseId}`);
-
-        if (card) {
-          card.scrollIntoView({
-            behavior: 'smooth',
-            block: 'center'
-          });
-        }
+        if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 100);
     }
 
     function deleteLog(id) {
       state.logs = state.logs.filter(log => log.id !== id);
-
       saveState();
       renderHistory();
       showToast('Workout log deleted.');
@@ -2193,7 +2048,6 @@
         showToast('No workout history to clear.');
         return;
       }
-
       if (confirm('Clear all workout history? Progress check-ins will stay.')) {
         state.logs = [];
         saveState();
@@ -2207,7 +2061,6 @@
       document.getElementById('goalInput').value = state.settings.goal;
       document.getElementById('startWeightInput').value = state.settings.startWeight;
       document.getElementById('startBodyFatInput').value = state.settings.startBodyFat;
-
       showScreen('settingsScreen');
     }
 
@@ -2216,7 +2069,6 @@
       state.settings.goal = document.getElementById('goalInput').value.trim() || 'Get leaner while maintaining size';
       state.settings.startWeight = document.getElementById('startWeightInput').value.trim();
       state.settings.startBodyFat = document.getElementById('startBodyFatInput').value.trim();
-
       saveState();
       showToast('Settings saved.');
       renderTopSummary();
@@ -2238,80 +2090,56 @@
         exportedAt: new Date().toISOString(),
         state
       };
-
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: 'application/json'
-      });
-
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-
       a.href = url;
       a.download = `home-gym-tracker-backup-${todayISO()}.json`;
-
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
-
       URL.revokeObjectURL(url);
       showToast('Backup exported.');
     }
 
     function importData(event) {
       const file = event.target.files[0];
-
-      if (!file) {
-        return;
-      }
-
+      if (!file) return;
       const reader = new FileReader();
-
       reader.onload = e => {
         try {
           const imported = JSON.parse(e.target.result);
           const importedState = imported.state || imported;
-
           if (!importedState.settings || !Array.isArray(importedState.logs) || !Array.isArray(importedState.progress)) {
             showToast('Invalid backup file.');
             return;
           }
-
           if (confirm('Import this backup? It will replace the data on this device.')) {
             state = {
               ...structuredClone(defaultState),
               ...importedState,
-              settings: {
-                ...defaultState.settings,
-                ...(importedState.settings || {})
-              },
+              settings: { ...defaultState.settings, ...(importedState.settings || {}) },
               logs: importedState.logs || [],
               progress: importedState.progress || []
             };
-
             saveState();
             openSettings();
             showToast('Backup imported.');
           }
-        } catch (error) {
+        } catch (err) {
           showToast('Could not read backup file.');
         }
       };
-
       reader.readAsText(file);
       event.target.value = '';
     }
 
     function showToast(message) {
       const toast = document.getElementById('toast');
-
       toast.textContent = message;
       toast.classList.add('show');
-
       clearTimeout(window.toastTimer);
-
-      window.toastTimer = setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2200);
+      window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
     }
 
     function escapeHtml(str) {
@@ -2326,7 +2154,7 @@
 
     function createManifest() {
       const manifest = {
-        name: 'Home Gym Tracker',
+        name: "Home Gym Tracker",
         short_name: 'Gym Tracker',
         start_url: '.',
         display: 'standalone',
@@ -2334,29 +2162,18 @@
         theme_color: '#006edb',
         description: 'A simple home gym workout and progress tracker.'
       };
-
-      const blob = new Blob([JSON.stringify(manifest)], {
-        type: 'application/json'
-      });
-
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const link = document.createElement('link');
-
       link.rel = 'manifest';
       link.href = url;
-
       document.head.appendChild(link);
     }
 
     window.addEventListener('beforeinstallprompt', event => {
       event.preventDefault();
       deferredInstallPrompt = event;
-
-      const installAction = document.getElementById('installAction');
-
-      if (installAction) {
-        installAction.style.display = 'grid';
-      }
+      document.getElementById('installAction').style.display = 'grid';
     });
 
     async function installApp() {
@@ -2364,17 +2181,10 @@
         showToast('Use your browser menu to add it to your home screen.');
         return;
       }
-
       deferredInstallPrompt.prompt();
       await deferredInstallPrompt.userChoice;
-
       deferredInstallPrompt = null;
-
-      const installAction = document.getElementById('installAction');
-
-      if (installAction) {
-        installAction.style.display = 'none';
-      }
+      document.getElementById('installAction').style.display = 'none';
     }
 
     createManifest();
